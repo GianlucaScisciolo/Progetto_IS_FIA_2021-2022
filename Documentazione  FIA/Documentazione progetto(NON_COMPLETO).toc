@@ -1,0 +1,3 @@
+\contentsline {section}{\numberline {1}Definizione del progetto}{1}{}%
+\contentsline {subsection}{\numberline {1.1}L'idea del progetto di IS}{1}{}%
+\contentsline {subsection}{\numberline {1.2}L'idea del modulo intelligente di FIA}{1}{}%

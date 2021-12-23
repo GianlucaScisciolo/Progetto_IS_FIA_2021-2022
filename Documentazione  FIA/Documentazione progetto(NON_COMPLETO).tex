@@ -14,28 +14,66 @@
   % Contenuti
   \tableofcontents
   
+  % Sezione 1
   \section{Definizione del progetto}
     \label{definizioneDelProgettoSection}
     
     % Sezione 1.1
     \subsection{L'idea del progetto di IS}
       \label{ideaDelProgettoDiISSubsection}
-        L'idea del progetto di IS è quello di permettere ad uno studente di trovare dei 
+        L'idea del progetto di IS e' quello di permettere ad uno studente di trovare dei 
         percorsi formativi da apprendere. Questi percorsi formativi sono insegnati da dei 
-        formatori, in particolare, ogni percorso formativo è sostenuto da uno studente in 
-        una o più fasce orarie in uno o più giorni della settimana, ed ogni percorso 
-        formativo è insegnato da un solo formatore quindi, avremo dei percorsi formativi 
+        formatori, in particolare, ogni percorso formativo e' sostenuto da uno studente in 
+        una o piu' fasce orarie in uno o piu' giorni della settimana, ed ogni percorso 
+        formativo e' insegnato da un solo formatore quindi, avremo dei percorsi formativi 
         individuali.
         
     % Sezione 1.2
     \subsection{L'idea del modulo intelligente di FIA}
       \label{ideaDelModuloIntelligenteDiFIASubsection}
-        l'idea del modulo intelligente di FIA è il seguente:\\
+        l'idea del modulo intelligente di FIA e' il seguente:\\
         Fornire ad uno studente un piano formativo personalizzato sulla base dei seguenti 
         parametri:\\
         \begin{enumerate}
           \item Gli interessi dello studente.
-          \item I giorni della settimana in cui lo studente è libero.
+          \item I giorni della settimana in cui lo studente e' libero.
         \end{enumerate}
-  
+        
+     % Sezione 1.3
+    \subsection{Analisi del problema:}
+      \label{analisiDelProblemaSubsection}
+        Analisi del problema:\\
+        Ambiente:
+        \begin{itemize}
+          \item completamente osservabile: in ogni momento l'agente ha a disposizione tutti i percorsi formativi;
+          \item stocastico: ad ogni azione dell'agente non sappiamo quale sara' il prossimo stato;
+          \item episodico;
+          \item statico: l'ambiente e' sempre lo stesso;
+          \item discreto: le percezioni dell'agente sono limitate poiche' avra' un numero limitato di specifiche;
+          \item singolo: abbiamo un unico agente.
+        \end{itemize}
+        
+        Sensori:
+        \begin{itemize}
+          \item gli interessi dello studente;
+          \item i giorni della settimana in cui lo studente e' libero;
+        \end{itemize}
+        
+        Attuatori:
+        \begin{itemize}
+          \item un vettore di 7 percorsi formativi mostrati a video.
+        \end{itemize}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.11.24)  23 DEC 2021 02:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.11.24)  24 DEC 2021 00:14
 entering extended mode
 **"./Documentazione progetto(NON_COMPLETO).tex"
 (Documentazione progetto(NON_COMPLETO).tex
@@ -209,147 +209,38 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout3 = `"Documentazione progetto(NON_COMPLETO).toc"'.
 
 
-
-! Package inputenc Error: Invalid UTF-8 byte sequence.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.23         L'idea del progetto di IS è qu
-                                           ello di permettere ad uno student...
-
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-! Package inputenc Error: Invalid UTF-8 byte sequence.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.25 ... particolare, ogni percorso formativo è so
-                                                  stenuto da uno studente in
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-! Package inputenc Error: Invalid UTF-8 byte "F9.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.26         una o più
-                       fasce orarie in uno o più giorni della settimana, ed ...
-
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-! Package inputenc Error: Invalid UTF-8 byte "F9.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.26         una o più fasce orarie in uno o più
-                                                 giorni della settimana, ed ...
-
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-! Package inputenc Error: Invalid UTF-8 byte sequence.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.27         formativo è in
-                           segnato da un solo formatore quindi, avremo dei p...
-
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-! Package inputenc Error: Invalid UTF-8 byte sequence.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.33 ...l'idea del modulo intelligente di FIA è il
-                                                   seguente:\\
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
-
-Overfull \hbox (0.52841pt too wide) in paragraph at lines 33--37
+Overfull \hbox (0.52841pt too wide) in paragraph at lines 34--38
 \OT1/cmr/m/n/10 Fornire ad uno stu-dente un pi-ano for-ma-tivo per-son-al-iz-za
 to sulla base dei seguenti
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--37
+Underfull \hbox (badness 10000) in paragraph at lines 34--38
 
  []
 
-
-! Package inputenc Error: Invalid UTF-8 byte sequence.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.38 ...ni della settimana in cui lo studente è li
-                                                  bero.
-The document does not appear to be in UTF-8 encoding.
-Try adding \UseRawInputEncoding as the first line of the file
-or specify an encoding such as \usepackage [latin1]{inputenc}
-in the document preamble.
-Alternatively, save the file in UTF-8 using your editor or another tool
-
 [1
 
-{C:/Users/GIANLUCA/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+{C:/Users/GIANLUCA/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
 (Documentazione progetto(NON_COMPLETO).aux) ) 
 Here is how much of TeX's memory you used:
  3127 strings out of 478927
- 49297 string characters out of 2851112
- 428817 words of memory out of 3000000
- 20971 multiletter control sequences out of 15000+600000
- 406647 words of font info for 40 fonts, out of 8000000 for 9000
+ 49361 string characters out of 2851112
+ 432827 words of memory out of 3000000
+ 20970 multiletter control sequences out of 15000+600000
+ 406982 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,5n,81p,276b,129s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Users/GIANLUCA/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/GIANLUCA/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/
-GIANLUCA/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
->
-Output written on "Documentazione progetto(NON_COMPLETO).pdf" (1 page, 45219 by
-tes).
+ 70i,5n,81p,276b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\GIANLUCA\AppData\Local\
+MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/GIANLUCA/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/GIA
+NLUCA/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+C:/Users/GIANLUCA/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr10.pfb>
+Output written on "Documentazione progetto(NON_COMPLETO).pdf" (2 pages, 48531 b
+ytes).
 PDF statistics:
- 21 PDF objects out of 1000 (max. 8388607)
+ 29 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

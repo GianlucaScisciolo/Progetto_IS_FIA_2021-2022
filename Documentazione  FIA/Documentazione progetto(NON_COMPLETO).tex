@@ -21,30 +21,30 @@
     % Sezione 1.1
     \subsection{L'idea del progetto di IS}
       \label{ideaDelProgettoDiISSubsection}
-        L'idea del progetto di IS e' quello di permettere ad uno studente di trovare dei 
-        percorsi formativi da apprendere. Questi percorsi formativi sono insegnati da dei 
-        formatori, in particolare, ogni percorso formativo e' sostenuto da uno studente in 
-        una o piu' fasce orarie in uno o piu' giorni della settimana, ed ogni percorso 
-        formativo e' insegnato da un solo formatore quindi, avremo dei percorsi formativi 
-        individuali.%
+      L'idea del progetto di IS e' quello di permettere ad uno studente di trovare dei 
+      percorsi formativi da apprendere. Questi percorsi formativi sono insegnati da dei 
+      formatori, in particolare, ogni percorso formativo e' sostenuto da uno studente in 
+      una o piu' fasce orarie in uno o piu' giorni della settimana, ed ogni percorso 
+      formativo e' insegnato da un solo formatore quindi, avremo dei percorsi formativi 
+      individuali.%
         
     % Sezione 1.2
     \subsection{L'idea del modulo intelligente di FIA}
       \label{ideaDelModuloIntelligenteDiFIASubsection}
-        l'idea del modulo intelligente di FIA e' il seguente:\\
-        Fornire ad uno studente un piano formativo personalizzato sulla base dei seguenti 
-        parametri:\\
-        \begin{enumerate}
-          \item Gli interessi dello studente.
-          \item lo storico dei percorsi formativi sostenuti dallo studente.
-          \item I giorni della settimana in cui lo studente e' libero.
-        \end{enumerate}%
+      l'idea del modulo intelligente di FIA e' il seguente:\\
+      Fornire ad uno studente un piano formativo personalizzato sulla base dei seguenti 
+      parametri:\\
+      \begin{enumerate}
+        \item Gli interessi dello studente.
+        \item lo storico dei percorsi formativi sostenuti dallo studente.
+        \item I giorni della settimana in cui lo studente e' libero.
+      \end{enumerate}%
         
     % Sezione 1.3
-    \subsection{Analisi del problema:}
+    \subsection{Analisi del problema}
       \label{analisiDelProblemaSubsection}
-        Analisi del problema:\\
-        \begin{itemize}
+      Analisi del problema:\\
+      \begin{itemize}
         \item Ambiente:
         \begin{itemize}
           \item[$\circ$] completamente osservabile: in ogni momento l'agente ha a disposizione tutti i percorsi formativi;
@@ -69,35 +69,52 @@
       \end{itemize}%
         
     % Sezione 1.4
-    \subsection{Analisi dell'algoritmo:}
+    \subsection{Analisi dell'algoritmo}
       \label{analisiDellAlgoritmo}
-        Utilizziamo un algoritmo di ricerca.\\
-        Non mi e' sembrato opportuno utilizzare un grafo, poiche' non ho trovato dei collegamenti opportuni 
-        tra i vari nodi.\\
-        Escludiamo le seguenti ricerche:
-        \begin{itemize}
-          \item Ricerca non informata.
-          \item Ricerca informata.
-        \end{itemize}
-        Non mi e' sembrato opportuno utilizzare un albero, poiche' non ho trovato una gerarchia tra i vari nodi e 
-        inoltre abbiamo soltanto un unico agente.\\
-        Escludiamo la seguente ricerca:
-        \begin{itemize}
-          \item Ricerca con avversari.
-        \end{itemize}
-        Utilizziamo un algoritmo genetico.\\
-        Poiche' la ricerca deve essere il piu' ottimale possibile, questo 
-        potrebbe comportare un tempo piu' lungo rispetto ad una normale ricerca per appunto avvantaggiare l'efficienza.\\
-        Nasce quindi la necessita' di avvisare lo studente che potrebbe essere necessario aspettare qualche secondo in piu'.\\
-        Quindi, nell'arco della progettazione dell'algoritmo genetico, Prenderemo in considerazione la 
-        seguente classifica numerata dal piu' importante al meno importante:
-        \begin{enumerate}
-          \item Completezza e ottimalita'.
-          \item Complessita' temporale.
-          \item Complessita' spaziale.
-        \end{enumerate}
-        Ovviamente, l'utente non vorra' aspettare molto tempo quindi, all'algoritmo gli daremo del tempo 
-        non superiore ai 10 secondi, mentre la visualizzazione del piano formativo avverra' dopo massimo 12 secondi. 
+      Utilizziamo un algoritmo di ricerca.\\
+      Non mi e' sembrato opportuno utilizzare un grafo, poiche' non ho trovato dei collegamenti opportuni 
+      tra i vari nodi.\\
+      Escludiamo le seguenti ricerche:
+      \begin{itemize}
+        \item Ricerca non informata.
+        \item Ricerca informata.
+      \end{itemize}
+      Non mi e' sembrato opportuno utilizzare un albero, poiche' non ho trovato una gerarchia tra i vari nodi e 
+      inoltre abbiamo soltanto un unico agente.\\
+      Escludiamo la seguente ricerca:
+      \begin{itemize}
+        \item Ricerca con avversari.
+      \end{itemize}
+      Utilizziamo un algoritmo genetico.\\
+      Poiche' la ricerca deve essere il piu' ottimale possibile, questo 
+      potrebbe comportare un tempo piu' lungo rispetto ad una normale ricerca per appunto avvantaggiare l'efficienza.\\
+      Nasce quindi la necessita' di avvisare lo studente che potrebbe essere necessario aspettare qualche secondo in piu'.\\
+      Quindi, nell'arco della progettazione dell'algoritmo genetico, Prenderemo in considerazione la 
+      seguente classifica numerata dal piu' importante al meno importante:
+      \begin{enumerate}
+        \item Completezza e ottimalita'.
+        \item Complessita' temporale.
+        \item Complessita' spaziale.
+      \end{enumerate}
+      Ovviamente, l'utente non vorra' aspettare molto tempo quindi, all'algoritmo gli daremo del tempo 
+      non superiore ai 10 secondi, mentre la visualizzazione del piano formativo avverra' dopo massimo 12 secondi. 
+        
+  % Sezione 2
+  \section{Progettazione dell'algoritmo genetico}
+    \label{progettazioneDellAlgoritmoGenetico}
+    
+    % Sezione 2.1
+    \subsection{Spazio degli stati}
+      \label{spazioDegliStati}
+      Lo spazio degli stati lo ricaviamo da una interrogazione al database ricavandoci i percorsi formativi
+      insegnati nei giorni della settimana in cui lo studente e' libero.\\
+      Abbiamo quindi un vettore (Vettore 1) di N percorsi formativi in cui abbiamo l'id presente nel database:\\
+      \begin{figure}[h!]
+        \centering
+        \caption{Vettore 1}
+        \includegraphics[scale=0.5]{spazioDegliStati.jpg}
+      \label{vettore1}
+    \end{figure} 
 \end{document}
 
 

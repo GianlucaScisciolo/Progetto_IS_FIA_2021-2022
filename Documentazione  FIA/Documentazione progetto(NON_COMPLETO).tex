@@ -64,13 +64,13 @@
         
         \item Attuatori:
         \begin{itemize}
-          \item[$\circ$] un vettore di 7 percorsi formativi mostrati a video.
+          \item[$\circ$] un vettore di massimo 7 percorsi formativi mostrati a video.
         \end{itemize}
       \end{itemize}%
         
     % Sezione 1.4
     \subsection{Analisi dell'algoritmo}
-      \label{analisiDellAlgoritmo}
+      \label{analisiDellAlgoritmoSubsection}
       Utilizziamo un algoritmo di ricerca.\\
       Non mi e' sembrato opportuno utilizzare un grafo, poiche' non ho trovato dei collegamenti opportuni 
       tra i vari nodi.\\
@@ -101,20 +101,44 @@
         
   % Sezione 2
   \section{Progettazione dell'algoritmo genetico}
-    \label{progettazioneDellAlgoritmoGenetico}
+    \label{progettazioneDellAlgoritmoGeneticoSection}
     
     % Sezione 2.1
     \subsection{Spazio degli stati}
-      \label{spazioDegliStati}
+      \label{spazioDegliStatiSubsection}
       Lo spazio degli stati lo ricaviamo da una interrogazione al database ricavandoci i percorsi formativi
       insegnati nei giorni della settimana in cui lo studente e' libero.\\
-      Abbiamo quindi un vettore (Vettore 1) di N percorsi formativi in cui abbiamo l'id presente nel database:\\
+      Abbiamo quindi un vettore (Vettore stati) di N percorsi formativi in cui abbiamo l'id presente nel database:\\
       \begin{figure}[h!]
         \centering
-        \caption{Vettore 1}
+        \caption{Vettore stati}
         \includegraphics[scale=0.5]{spazioDegliStati.jpg}
-      \label{vettore1}
-    \end{figure} 
+        \label{vettoreStati}
+      \end{figure}\\
+      
+    % Sezione 2.2
+    \subsection{Codifica degli individui}
+      \label{codificaDegliIndividuiSubsection}
+      Come codifica utilizzeremo un vettore di massimo 7 interi positivi (individuo).\\
+      2 Esempi di individui:\\
+      \begin{figure}[h!]
+        \centering
+        \caption{Esempio individui}
+        \includegraphics[scale=0.5]{esempiIndividui.jpg}
+        \label{esempioIndividui}
+      \end{figure}\\
+      Ogni intero rappresenta una posizione di un percorso formativo all'interno del vettore stati.\\
+      Perche' massimo 7? perche' vogliamo ritornare un sottoinsieme di 7 percorsi formativi (piano formativo)
+      ordinati in base al giorno e all'orario.\\
+      Questo sara' il DNA della soluzione composta da massimo 7 geni. Quindi, ogni individuo non e' 
+      altro che un piano formativo.\\
+      Ora, considerando il vettore stati e N il numero di percorsi formativi presente nel vettore stati:\\
+      \begin{itemize}
+        \item se $ N = 0 $ allora ritorno: non ho trovato nessun percorso formativo.
+        \item se $ 0 < N \leq 7 $ allora ritorno tutti i percorsi formativi senza eseguire l'algoritmo.
+        \item se $ N > 7 $ allora eseguo l'algoritmo genetico e ritorno l'individuo trovato.
+      \end{itemize}
+      
 \end{document}
 
 

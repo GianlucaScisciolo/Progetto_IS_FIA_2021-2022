@@ -5,12 +5,13 @@
 \usepackage{amssymb}
 \usepackage{lipsum,enumitem}
 \usepackage{graphicx}
+\usepackage{program}
 \newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
 \begin{document}
-  
+   
   % Contenuti
   \tableofcontents
   
@@ -157,14 +158,247 @@
       popolazione sara' composta da un numero K di individui tale che:\\ 
       $ K = \bigl\lfloor {N \over 3} \bigl\rfloor $.\\
       All'inizio, tutti i K individui saranno generati in maniera random.\\
-      Esempi:\\
-      \begin{figure}[h!]
+      Esempi:
+      \begin{figure}
         \centering
         \caption{Esempi popolazioni}
         \includegraphics[scale=0.5]{esempiPopolazioni.jpg}
         \label{esempiPopolazioni}
-      \end{figure}\\
+      \end{figure}
+      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    % Sezione 2.5
+    \subsection{Valuto la popolazione}
+      \label{valutoLaPopolazioneSubsection}
       
+      Come possiamo valutare la popolazione?\\
+      Abbiamo bisogno di una funzione obiettivo (funzioneObiettivo(codifica)).\\
+      Dalla funzione obiettivo ci ricaviamo una funzione di valutazione (funzioneValutazione(codifica)) che sara':
+      \begin{itemize}
+        \item uguale alla funzione obiettivo nel caso in cui quest'ultima non richiede molte risorse, 
+        sia accessibile, non e' complessa e non e' impossibile da realizzare.
+        \item un approssimazione della funzione obiettivo nel caso in cui il punto precedente non e' 
+        vero. 
+      \end{itemize}
+      Dopo di che, una volta applicata la funzione di valutazione, ad ogni individuo gli sara' dato un valore di 
+      partenza che con la funzione di fitness (fit(codifica)) avremo' il grado di sopravvivenza di ciascun 
+      individuo. La funzione di fitness dipende dall'algoritmo di selezione utilizzato.\\
+      Funzione obiettivo (funzioneObiettivo(codifica)) considerazioni:\\
+      poiche' possono esistere 2 o piu' geni con lo stesso valore allora il punteggio sara' dato solo ai 
+      geni con valore diverso, quindi, ci servira' un modo per calcolare il punteggio solo ai nodi 
+      diversi (utilizzeremo una funzione chiamata contains, java la fornisce).\\
+      Le seguenti funzioni possono cambiare (non sono ancora quelle definitive):\\
+      Funzione obiettivo:\\
+      \begin{figure}[h!]
+        \centering
+        \caption{funzioneObiettivo(codifica) -- pseudocodice:}
+        \includegraphics[scale=0.5]{funzioneObiettivo pseudocodice.jpg}
+        \label{funzioneObiettivoPseudocodice}
+      \end{figure}
+      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+      
+      
+      getPunteggio(gene):\\
+      con la funzione getPunteggio(gene):\\
+      \begin{enumerate}
+       \item Mi ricavo il percorso formativo.
+       \item Con il percorso formativo ricavato, mi ricavo:
+         \begin{enumerate}
+           \item Il valoreInteresse.
+           \item Il valoreStorico.
+           \item Il valoreCosto
+         \end{enumerate}
+       \item Utilizzero' una delle seguenti funzioni matematiche:
+         \begin{itemize}
+           \item Somma lineare di tutti i parametri:\\
+                 SP = valoreInteresse + valoreStorico + valoreCosto.\\
+                 Soluzione migliore: la soluzione che ha il punteggio:\\
+                 SMP = (15 + 10 + 5) * 7 = 210.           
+           \item Somma lineare di tutti i parametri moltiplicati per una costante c:\\
+                 SP = (valoreInteresse * c) + (valoreStorico * c) + (valoreCosto * c).\\
+                 Soluzione migliore: la soluzione che ha il punteggio:\\
+                 SMP = [(15 * c) + (10 * c) + (5 * c)] * 7 = [(15 + 10 + 5) * c] * 7 = [30 * c] * 7 =
+                 30 * 7 * c =  210 * c.
+           \item Somma lineare di tutti i parametri elevati per una costante d:\\
+                 $SP = (valoreInteresse ^ d) + (valoreStorico ^ d) + (valoreCosto ^ d).$\\
+                 Soluzione migliore: la soluzione che ha il punteggio:\\
+                 $SMP = [(15 ^ d) + (10 ^ d) + (5 ^ d)] * 7$
+           \item Il quadrato della somma lineare di tutti i parametri:\\
+                 $SP = (valoreInteresse + valoreStorico + valoreCosto)^ 2.$\\
+                 Soluzione migliore: la soluzione che ha il punteggio:\\
+                 $SMP = [(15 + 10 + 5) ^ 2] * 7 = 900 * 7 = 6300$
+         \end{itemize}
+       \end{enumerate}
+       Li analizzeremo successivamente scegliendo la funzione che darà risultati migliori.
+       \begin{figure}[h!]
+        \centering
+        \caption{getPunteggio(gene) -- pseudocodice:}
+        \includegraphics[scale=0.5]{getPunteggio pseudocodice.jpg}
+        \label{getPunteggioPseudocodice}
+      \end{figure}
+      
+    % Sezione 2.6
+    \subsection{Mi fermo? -- Criteri di arresto}
+    \label{MiFermo?--CriteriDiArrestoSubsection}
+    Criteri di arresto utilizzati:
+    \begin{enumerate}
+      \item Test Ottimalità: se raggiungiamo l’ottimo allora ci fermiamo.
+      \item Tempo di Esecuzione: dopo 10 secondi l’algoritmo termina.
+    \end{enumerate}
+    
+    % Sezione 2.7
+    \subsection{Selezione}
+    \label{Selezione}
+    Esistono vari tipi di selezione. Andiamo ad analizzarli:
+    - Roulette Wheel Selection:
+    \begin{figure}[h!]
+      \centering
+      \caption{Roulette Wheel Selection}
+      \includegraphics[scale=0.5]{Roulette Wheel Selection.png}
+      \label{RouletteWheelSelection}
+    \end{figure}
+    \begin{enumerate}
+      \item fit(s) = f(s) / $\Sigma$ f(s).
+      \item andiamo a girare la ruota un numero di volte uguale al numero di individui presenti nella 
+            popolazione.
+    \end{enumerate} 
+    
+    Rank Selection:\\\\
+    fit(x) = (|P| - rank(x) + 1) / $\Sigma$ rank(x).\\
+    E’ applicabile anche con valutazioni negative.\\
+    Costa più della Roulette Wheel.\\
+    
+    K-way Tournament Selection:\\
+    Fissato un valore 1 < K < |P| arbitrario, si selezionano casualmente K individui per formare un 
+    cosiddetto "torneo", all’interno del quale il migliore (con valutazione massima) passerà la 
+    selezione. Si ripete per M < |P| tornei, quindi fino ad ottenere un totale di M individui 
+    selezionati.\\\\
+    
+    Quale tipo di selezione utilizzeremo?\\
+    Roulette Wheel Selection: poco ideale per popolazioni piccole.\\
+    Rank selection: troppo lenta.\\
+    Scegliamo la k-way Tournament Selection.\\
+    
+    % Sezione 2.8
+    \subsection{Crossover}
+    \label{Crossover}
+    Single-point Crossover:\\
+    Punto di taglio  = numero casuale tra 1 e 6.\\
+    Esempio: 4
+    \begin{figure}[h!]
+      \centering
+      \caption{Single-point Crossover}
+      \includegraphics[scale=0.5]{Single-point Crossover.png}
+      \label{Single-pointCrossover}
+    \end{figure}\\\\\\\\\\\\\\\\\\\\
+    
+    
+    Two-point Crossover:\\
+    Punti di taglio: 2 numeri casuali tra 1 e 6 diversi tra di loro.\\
+    Esempio: 2, 6
+    \begin{figure}[h!]
+      \centering
+      \caption{Two-point Crossover}
+      \includegraphics[scale=0.5]{Two-point Crossover.png}
+      \label{Two-pointCrossover}
+    \end{figure}
+    
+    K-point Crossover:\\
+    Punti di taglio: k numeri casuali tra 1 a 6 diversi tra loro. 0 < K <= 6\\
+    Esempio: K = 4 → 4 numeri casuali tra 1 e 6 diversi tra di loro → 1, 3, 5, 6
+    \begin{figure}[h!]
+      \centering
+      \caption{K-point Crossover}
+      \includegraphics[scale=0.5]{K-point Crossover.png}
+      \label{K-pointCrossover}
+    \end{figure}
+    
+    Uniform Crossover:\\
+    Non si compie alcun taglio, ma il gene i-esimo di entrambi i figli sarà pari al gene i-esimo di uno 
+    dei due genitori. Dato che la scelta tra i due genitori è uniforme, si avranno figli 
+    con circa 50\% del materiale del primo genitore e 50\% del secondo genitore.\\
+    Esempio:
+    \begin{figure}[h!]
+      \centering
+      \caption{Uniform Crossover}
+      \includegraphics[scale=0.5]{Uniform Crossover.png}
+      \label{UniformCrossover}
+    \end{figure}
+    
+    Quale tipo di Crossover utilizzeremo?\\
+    Il Single-point Crossover con codifiche piccole non è l’ideale.\\
+    Il Two-point Crossover crea più diversità ma abbiamo sempre una codifica piccola.\\
+    Il K-point Crossover: Quale deve essere il valore ideale di K?\\
+    Per levarci questo problema, scegliamo l’Uniform Crossover. In modo che non facciamo nessun taglio 
+    e c’è più diversità.\\
+    
+    % Sezione 2.9
+    \subsection{Mutazione}
+    \label{Mutazione}
+    Random resetting:\\
+    modifica casuale di un gene ad un altro valore.\\
+    Esempio:\\
+    N = 20\\
+    \begin{itemize}
+      \item Scegliamo un gene casuale da mutare: il gene numero 2 → valore: 14.
+      \item Scegliamo un numero casuale da 0 a N-1 diverso da 14: 5.
+      \item Mutiamo il gene: 14 → 5.
+    \end{itemize}
+    \begin{figure}[h!]
+      \centering
+      \caption{Random Resetting}
+      \includegraphics[scale=0.5]{Random Resetting.png}
+      \label{Random Resetting}
+    \end{figure}
+    
+    Swap:\\
+    scambiamo di posto 2 geni scelti casualmente.\\
+    Esempio:\\
+    scegliamo casualmente i geni 1 e 5.
+    \begin{figure}[h!]
+      \centering
+      \caption{Swap}
+      \includegraphics[scale=0.5]{Swap.png}
+      \label{Swap}
+    \end{figure}
+    
+    Scramble:\\
+    selezioniamo una sottosequenza casuale di geni e la permutiamo casualmente.
+    Esempio:\\
+    \begin{enumerate}
+      \item Scegliamo casualmente la sottosequenza 2 → 3 → 4 → 5.
+      \item La permutiamo casualmente: 4 → 5 → 2 → 3.
+    \end{enumerate}
+    \begin{figure}[h!]
+      \centering
+      \caption{Scramble}
+      \includegraphics[scale=0.5]{Scramble.png}
+      \label{Scramble}
+    \end{figure}
+     
+    Inversion:\\
+    selezioniamo una sottosequenza casuale di geni e la invertiamo.\\
+    Esempio:\\
+    \begin{enumerate}
+      \item Scegliamo casualmente la sottosequenza 2 → 3 → 4 → 5.
+      \item La invertiamo: 5 → 4 → 3 → 2.
+    \end{enumerate}
+    \begin{figure}[h!]
+      \centering
+      \caption{Inversion}
+      \includegraphics[scale=0.5]{Inversion.png}
+      \label{Inversion}
+    \end{figure}
+    
+    Quale tipo di mutazione utilizzeremo?\\
+    Ricordiamo che ogni gene rappresenta un percorso formativo, quindi non avrebbe senso utilizzare i 
+    seguenti tipi di mutazione: Swap, Scramble e Inversion poiche' gli individui mutati saranno gli 
+    stessi individui di prima solo che avranno gli indici dei percorsi formativi cambiati di posto.\\
+    Quindi, prendiamo in considerazione la seguente mutazione: Random resetting poiche' un gene sarà 
+    mutato con l'indice di un percorso formativo diverso.
+
+    
+      
+
 \end{document}
 
 

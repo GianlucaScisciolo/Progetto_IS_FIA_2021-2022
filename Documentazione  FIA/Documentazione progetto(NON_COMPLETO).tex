@@ -395,8 +395,62 @@
     stessi individui di prima solo che avranno gli indici dei percorsi formativi cambiati di posto.\\
     Quindi, prendiamo in considerazione la seguente mutazione: Random resetting poiche' un gene sarà 
     mutato con l'indice di un percorso formativo diverso.
-
     
+    % Sezione 2.10
+    \subsection{Elitismo}
+    \label{elitismoSubsection}
+    Poiche' gli individui di elite saranno il 10\% della popolazione allora l'elitismo lo utilizzeremo 
+    solo quando il numero della popolazione e' maggiore o uguale a 10. Gli individui di elite non 
+    subiranno ne la selezione, ne il crossover e ne la mutazione.
+	
+    % Sezione 2.11
+    \subsection{Preserviamo l'ammissibilita'}
+    \label{PreserviamoAmmissibilitaSubsection}
+    Con il crossover e la mutazione si potrebbe correre il rischio che nelle nuove generazioni 
+    potrebbero esistere degli individui non ammissibili. Nel nostro caso questo non accade perche':
+    \begin{enumerate}
+      \item Nel crossover abbiamo 2 genitori che formano 2 figli contenenti i geni 
+      al 50\% di uno e 50\% di un altro, poiche' tutti i geni sono indici di percorsi formativi 
+      presenti allora non avremo mai percorsi formativi inesistenti.
+      \item Nella mutazione: mutiamo un gene con un altro valore, questo nuovo valore sarà ancora un 
+      percorso formativo valido poiche' sara' un indice esistente.
+    \end{enumerate}
+    
+    % Sezione 2.12
+    \subsection{Aggiorniamo la popolazione}
+    \label{aggiorniamoPopolazioneSubsection}
+    La nuova popolazione sara' costituita da N individui, ovvero:
+    \begin{itemize}
+      \item Sia A l'insieme degli individui di elite.
+      \item Sia B l'insieme degli individui che hanno partecipato alla selezione, al crossover e alla 
+      mutazione.
+      \item Nuova popolazione = A U B.
+    \end{itemize}
+    Quindi aggiorniamo la vecchia popolazione con la nuova popolazione salvandoci pero' l'individuo 
+    migliore della vecchia generazione se e solo se quest'ultimo e' migliore dell'ultimo individuo 
+    migliore.
+    
+    % Sezione 2.13
+    \subsection{Ottengo il miglior individuo}
+    \label{ottengoMigliorIndividuoSubsection}
+    Quando usciamo dal loop ritorneremo il miglior individuo, ovvero, uno dei seguenti individui:
+    \begin{itemize}
+      \item Nel caso in cui raggiungo l'ottimo: l'individuo migliore dell'ultima generazione ottenuta.
+      \item Nel caso in cui non raggiungo l'ottimo (il tempo scade): l'individuo migliore trovato dalla 
+      prima all'ultima generazione ottenuta.
+    \end{itemize}
+    
+    % Sezione 2.14
+    \subsection{Riformulazione dei passi dell'algoritmo genetico}
+    \label{riformulazioneDeiPassiAlgoritmoGeneticoSubsection}
+    Alla luce della progettazione fatta, possiamo riformulare il tutto con i seguenti passi 
+    dell'algoritmo genetico: 
+    \begin{figure}[h!]
+      \centering
+      \caption{Riformulazione dei passi dell'algoritmo genetico}
+      \includegraphics[scale=0.5]{Riformulazione passi algoritmo genetico.jpg}
+      \label{Riformulazione passi algoritmo genetico}
+    \end{figure}
       
 
 \end{document}

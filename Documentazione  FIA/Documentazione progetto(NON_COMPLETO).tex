@@ -40,6 +40,7 @@
         \item lo storico dei percorsi formativi sostenuti dallo studente.
         \item I giorni della settimana in cui lo studente e' libero.
       \end{enumerate}%
+      Inoltre, verranno visualizzati anche un insieme di massimo 6 percorsi formativi suggeriti.
         
     % Sezione 1.3
     \subsection{Analisi del problema}
@@ -65,7 +66,12 @@
         
         \item Attuatori:
         \begin{itemize}
-          \item[$\circ$] un vettore di massimo 7 percorsi formativi mostrati a video.
+          \item[$\circ$] un vettore di massimo 10 percorsi formativi mostrati a video:
+          \begin{itemize}
+            \item I 4 percorsi formativi con punteggio più alto faranno parte del piano formativo;
+            \item I percorsi formativi rimanenti (diversi tra loro e che non fanno parte 
+            del piano formativo) faranno parte dei percorsi formativi suggeriti. 
+          \end{itemize}
         \end{itemize}
       \end{itemize}%
         
@@ -98,7 +104,8 @@
         \item Complessita' spaziale.
       \end{enumerate}
       Ovviamente, l'utente non vorra' aspettare molto tempo quindi, all'algoritmo gli daremo del tempo 
-      non superiore ai 10 secondi, mentre la visualizzazione del piano formativo avverra' dopo massimo 12 secondi. 
+      non superiore ai 5 secondi, mentre la visualizzazione del piano formativo avverra' dopo massimo 
+      7 secondi. 
         
   % Sezione 2
   \section{Progettazione dell'algoritmo genetico}
@@ -120,8 +127,9 @@
     % Sezione 2.2
     \subsection{Codifica degli individui}
       \label{codificaDegliIndividuiSubsection}
-      Come codifica utilizzeremo un vettore di massimo 7 interi positivi (individuo).\\
-      2 Esempi di individui:\\
+      Come codifica utilizzeremo un vettore di massimo 10 interi maggiori di 0.\\
+      2 Esempi di individui:
+      \\\\\\\\\\\\\\\\\\\\
       \begin{figure}[h!]
         \centering
         \caption{Esempio individui}
@@ -129,21 +137,26 @@
         \label{esempioIndividui}
       \end{figure}\\
       Ogni intero rappresenta una posizione di un percorso formativo all'interno del vettore stati.\\
-      Perche' massimo 7? perche' vogliamo ritornare un sottoinsieme di 7 percorsi formativi (piano formativo)
-      ordinati in base al giorno e all'orario.\\
-      Questo sara' il DNA della soluzione composta da massimo 7 geni. Quindi, ogni individuo non e' 
-      altro che un piano formativo.\\
-      Ora, considerando il vettore stati e N il numero di percorsi formativi presente nel vettore stati:\\
+      Perche' massimo 10? perche' vogliamo ritornare un sottoinsieme di 10 percorsi formativi di cui i 
+      4 percorsi formativi con punteggio più alto ordinati in base al giorno e all'orario faranno parte 
+      del piano formativo e i percorsi formativi rimanenti diversi tra loro e non presenti 
+      nel piano formativo faranno parte dei consigliati.\\
+      Questo sara' il DNA della soluzione composta da massimo 10 geni. Quindi, ogni individuo non e' 
+      altro che un piano formativo con dei percorsi formativi consigliati.\\
+      Ora, considerando il vettore stati e N il numero di percorsi formativi presente 
+      nel vettore stati:\\
       \begin{itemize}
-        \item se $ N = 0 $ allora ritorno: non ho trovato nessun percorso formativo.
-        \item se $ 0 < N \leq 7 $ allora ritorno tutti i percorsi formativi senza eseguire l'algoritmo.
-        \item se $ N > 7 $ allora eseguo l'algoritmo genetico e ritorno l'individuo trovato.
+        \item se $ N = 0 $ allora ritorno un insieme vuoto senza eseguire l'algoritmo.
+        \item se $ 0 < N \leq 10 $ allora ritorno tutti i percorsi formativi senza eseguire 
+        l'algoritmo.
+        \item se $ N > 10 $ allora eseguo l'algoritmo genetico e ritorno l'individuo trovato.
       \end{itemize}
       
     % Sezione 2.3
     \subsection{Passi dell'algoritmo genetico}
       \label{passiDellAlgoritmoGeneticoSubsection}
-      Questi saranno i passi dell'algoritmo genetico:\\
+      Questi saranno i passi dell'algoritmo genetico:
+      \\\\\\\\\\\\\\\\\\\\
       \begin{figure}[h!]
         \centering
         \caption{Passi dell'algoritmo genetico}

@@ -9,5 +9,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/org/apache/commons/commons-lang3/3.9/commons-lang3-3.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/org/uma/jmetal/jmetal-algorithm/5.10/jmetal-algorithm-5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/org/uma/jmetal/jmetal-core/5.10/jmetal-core-5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/org/uma/jmetal/jmetal-example/5.10/jmetal-example-5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/org/uma/jmetal/jmetal-lab/5.10/jmetal-lab-5.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIANLUCA/.m2/repository/org/uma/jmetal/jmetal-problem/5.10/jmetal-problem-5.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

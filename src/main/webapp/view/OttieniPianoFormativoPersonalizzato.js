@@ -3,7 +3,7 @@ $(document).ready(function() {
 		
 		$.post("http://localhost:8080/formAct_FIA/PianoFormativoPersonalizzatoServlet",
 		{
-			action: "ottieniPianoFormativoPersonalizzato"
+			action: "ottieniPianoFormativoPersonalizzato" 
 		},
 		function() {
 			//alert("Successo");

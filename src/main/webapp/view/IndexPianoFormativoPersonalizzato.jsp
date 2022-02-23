@@ -13,6 +13,7 @@
 </head>
 
 <body>
+	
 	<button id="ottieniPercorsoFormativoButton"
 		class="ottieniPercorsoFormativoButton">Ottieni un piano
 		formativo personalizzato</button>

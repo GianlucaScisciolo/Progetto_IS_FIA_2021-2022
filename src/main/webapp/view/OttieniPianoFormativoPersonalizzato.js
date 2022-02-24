@@ -1,13 +1,12 @@
 $(document).ready(function() {
 	$("#ottieniPercorsoFormativoButton").click(function() {
-		
-		$.post("http://localhost:8080/formAct_FIA/servlet/pianoformativopersonalizzato.control.PianoFormativoPersonalizzatoServlet",
+		var url = "http://localhost:8080/formAct_FIA/PianoFormativoPersonalizzatoServlet";
+		$.post(url,
 		{
 			action: "ottieniPianoFormativoPersonalizzato" 
 		},
 		function() {
-			//alert("Successo");
-    		// reindirizzo alla view con il piano formativo personalizzato
+    		window.location.href = 'http://localhost:8080/formAct_FIA/view/PianoFormativoPersonalizzato.jsp';
     	})
     	.fail(function() {
     		alert("Fallimento");

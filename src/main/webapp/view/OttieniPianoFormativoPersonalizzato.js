@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#ottieniPercorsoFormativoButton").click(function() {
 		
-		$.post("http://localhost:8080/formAct_FIA/PianoFormativoPersonalizzatoServlet",
+		$.post("http://localhost:8080/formAct_FIA/servlet/pianoformativopersonalizzato.control.PianoFormativoPersonalizzatoServlet",
 		{
 			action: "ottieniPianoFormativoPersonalizzato" 
 		},

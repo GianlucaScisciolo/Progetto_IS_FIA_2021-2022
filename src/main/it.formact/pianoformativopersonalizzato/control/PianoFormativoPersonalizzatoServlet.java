@@ -12,15 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.CategoriaDao;
 import model.dao.InteresseStudenteDao;
 import model.dao.PianoFormativoPersonalizzatoDao;
 import model.dao.PreferenzaStudenteDao;
 import model.dao.StudenteDao;
+import model.entity.CategoriaEntity;
 import model.entity.InteresseStudenteEntity;
 import model.entity.PercorsoFormativoEntity;
 import model.entity.PreferenzaStudenteEntity;
 import model.entity.StudenteEntity;
-import pianoformativopersonalizzato.service.PianoFormativoPersonalizzato;
+import pianoformativopersonalizzato.service.Individuo;
+import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoGA;
 import pianoformativopersonalizzato.service.Stato;
 
 /**
@@ -78,18 +81,25 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 	    			ArrayList<String> interessi = pianoFormativoPersonalizzatoDao.doRetrieveInteressiStudente(idStudente);
 	    			System.out.println(interessi);
 	    			
-	    			PianoFormativoPersonalizzato pianoFormativoPersonalizzato = null;
+	    			CategoriaDao categoriaDao = new CategoriaDao();
+	    			ArrayList<CategoriaEntity> categorie = categoriaDao.doRetrieveAll();
+	    			for (CategoriaEntity categoria : categorie) {
+	    				System.out.println(categoria);
+	    			}
+	    			
+	    			Individuo pianoFormativoPersonalizzato = null;
 	    			
 	    			int n = spazioStati.size();
 	    			if (n <= 0) {
-	    				pianoFormativoPersonalizzato = new PianoFormativoPersonalizzato();
+	    				pianoFormativoPersonalizzato = new Individuo();
 	    			}
 	    			else if (n > 0 && n < 11) {
-	    				pianoFormativoPersonalizzato = new PianoFormativoPersonalizzato(spazioStati);
+	    				pianoFormativoPersonalizzato = new Individuo(spazioStati);
 	    			}
 	    			else {
 	    				// Eseguo l'algoritmo;
-	    				pianoFormativoPersonalizzato = pianoFormativoPersonalizzato.getPianoFormativoPersonalizzato(spazioStati, giorniLiberi, interessi);
+	    				PianoFormativoPersonalizzatoGA ga = new PianoFormativoPersonalizzatoGA();
+	    				pianoFormativoPersonalizzato = ga.getPianoFormativoPersonalizzato(spazioStati, giorniLiberi, interessi, categorie);
 	    			}
 	    			
 	    			session.setAttribute("pianoFormativoPersonalizzato", pianoFormativoPersonalizzato);

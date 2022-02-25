@@ -3,11 +3,13 @@
 	contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     
-    import="pianoformativopersonalizzato.service.PianoFormativoPersonalizzato"
+    import="pianoformativopersonalizzato.service.Individuo"
     import="pianoformativopersonalizzato.service.Stato"
 %>
 <%
-	PianoFormativoPersonalizzato pianoFormativoPersonalizzato = (PianoFormativoPersonalizzato) session.getAttribute("pianoFormativoPersonalizzato");	
+p
+
+	Individuo pianoFormativoPersonalizzato = (Individuo) session.getAttribute("pianoFormativoPersonalizzato");
 %>
 
 <!DOCTYPE html>

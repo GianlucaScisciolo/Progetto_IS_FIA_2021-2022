@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-02-25T15:44:04.574936700Z</date>
+  <millis>1645803844574</millis>
+  <nanos>936700</nanos>
+  <sequence>0</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.JMetalLogger</class>
+  <method>configureLoggers</method>
+  <thread>1</thread>
+  <message>Loggers configured with null</message>
+</record>
+<record>
+  <date>2022-02-25T15:44:04.639335300Z</date>
+  <millis>1645803844639</millis>
+  <nanos>335300</nanos>
+  <sequence>1</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>pianoformativopersonalizzato.service.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Usage: numberOfSolutions granularity distributionIndex</message>
+</record>
+<record>
+  <date>2022-02-25T15:44:04.639335300Z</date>
+  <millis>1645803844639</millis>
+  <nanos>335300</nanos>
+  <sequence>2</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>pianoformativopersonalizzato.service.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Using default parameters</message>
+</record>
+</log>

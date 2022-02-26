@@ -92,8 +92,8 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 
 
 	@Override
-	public void evaluate(IntegerSolution integerSolution) {
-		ArrayList<Integer> codifica = (ArrayList<Integer>) integerSolution.getVariables();
+	public IntegerSolution evaluate(IntegerSolution integerSolution) {
+		ArrayList<Integer> codifica = (ArrayList<Integer>) integerSolution.variables();
 		ArrayList<Integer> geniControllati = new ArrayList<>();
 		int punteggio = 0;
 		int size = 10;
@@ -117,7 +117,8 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 			
 			i++;
 		}
-		integerSolution.getObjectives()[0] = punteggio;
+		integerSolution.objectives()[0] = punteggio;
+		return integerSolution;
 	}
 	
 	private int calcolaPunteggioGene (Integer gene) {

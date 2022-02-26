@@ -3,9 +3,8 @@ package pianoformativopersonalizzato.service;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.solution.binarysolution.BinarySolution;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
-
-import pianoformativopersonalizzato.service.Check;
-import pianoformativopersonalizzato.service.JMetalException;
+import org.uma.jmetal.util.errorchecking.Check;
+import org.uma.jmetal.util.errorchecking.JMetalException;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import org.uma.jmetal.util.pseudorandom.RandomGenerator;
 

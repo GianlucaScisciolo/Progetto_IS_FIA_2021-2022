@@ -50,10 +50,10 @@ public class PianoFormativoPersonalizzatoGA {
         AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algoritmoGenetico).execute();
         IntegerSolution bestIndividual = algoritmoGenetico.getResult();
         
-        JMetalLogger.logger.info(String.format("Problem: %s", problem.getName()));
-        JMetalLogger.logger.info(String.format("Solution: %s", bestIndividual.getVariables()));
-        JMetalLogger.logger.info(String.format("Evaluation: %s", Arrays.toString(bestIndividual.getObjectives())));
-        JMetalLogger.logger.info(String.format("Total execution time: %s ms", algorithmRunner.getComputingTime()));
+//        JMetalLogger.logger.info(String.format("Problem: %s", problem.getName()));
+//        JMetalLogger.logger.info(String.format("Solution: %s", bestIndividual.getVariables()));
+//        JMetalLogger.logger.info(String.format("Evaluation: %s", Arrays.toString(bestIndividual.getObjectives())));
+//        JMetalLogger.logger.info(String.format("Total execution time: %s ms", algorithmRunner.getComputingTime()));
         
         return null;
 		

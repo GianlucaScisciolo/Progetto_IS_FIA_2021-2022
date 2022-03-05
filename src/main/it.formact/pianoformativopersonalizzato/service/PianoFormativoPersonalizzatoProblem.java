@@ -22,8 +22,12 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		
 	}
 	
-	public PianoFormativoPersonalizzatoProblem (ArrayList<Stato> spazioStati, int geniSize) {
+	public PianoFormativoPersonalizzatoProblem (ArrayList<Stato> spazioStati, int geniSize, ArrayList<String> giorniLiberi, ArrayList<String> interessi, ArrayList<CategoriaEntity> categorie) {
 		this.spazioStati = spazioStati;
+		this.giorniLiberi = giorniLiberi;
+		this.interessi = interessi;
+		this.categorie = categorie;
+				
 		setName("Piano formativo personalizzato");
 		setNumberOfVariables(spazioStati.size()); //
 		List<Integer> lowerBounds = new ArrayList<>();
@@ -34,6 +38,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		}
 		setVariableBounds(lowerBounds, upperBounds);
 		setNumberOfObjectives(1);
+		
 	}
 	
 	public ArrayList<Individuo> getIndividui() {
@@ -117,7 +122,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 			
 			i++;
 		}
-		integerSolution.objectives()[0] = punteggio;
+		integerSolution.objectives()[0] = -punteggio;
 		return integerSolution;
 	}
 	
@@ -125,6 +130,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		
 		Stato stato = spazioStati.get(gene);
 		String indiceContenuti = stato.getPercorsoFormativo().getIndice_contenuti();
+		String nomePercorsoFormativo = stato.getPercorsoFormativo().getNome();
 		int categoria = stato.getPercorsoFormativo().getCategoria();
 		double costo = stato.getPercorsoFormativo().getCosto();
 		
@@ -143,19 +149,25 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 			regexInteresse = "/" + interessi.get(i) + "/g";
 						
 			if (risultatoInteresse == false) {
-				risultatoInteresse = indiceContenuti.matches(regexInteresse);
+				risultatoInteresse = nomePercorsoFormativo.matches(regexInteresse);
 				if (risultatoInteresse == true) { 
 					valoreInteresse += 5;
 				}
+				else {
+					risultatoInteresse = indiceContenuti.matches(regexInteresse);
+					if (risultatoInteresse == true) { 
+						valoreInteresse += 5;
+					}
+				}
 			}
-			
+			/*
 			if (risultatoCategoria == false) {
 				risultatoCategoria = interessi.get(i).matches(regexCategoria);
 				if (risultatoCategoria == true) {
 					valoreCategoria += 5;
 				}
 			}
-			
+			*/
 			if (risultatoInteresse == true && risultatoCategoria == true) {
 				break;
 			}

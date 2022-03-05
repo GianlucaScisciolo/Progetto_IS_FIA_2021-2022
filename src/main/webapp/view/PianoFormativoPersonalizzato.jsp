@@ -5,58 +5,92 @@
     
     import="pianoformativopersonalizzato.service.Individuo"
     import="pianoformativopersonalizzato.service.Stato"
+    import="model.entity.PercorsoFormativoEntity"
 %>
+
 <%
-p
-
-	Individuo pianoFormativoPersonalizzato = (Individuo) session.getAttribute("pianoFormativoPersonalizzato");
+	Individuo individuo = (Individuo) session.getAttribute("individuo");
 %>
 
-<!DOCTYPE html>
+<!doctype html>
 
-<html>
+<html lang="en">
 	<head>
-		<meta charset="ISO-8859-1">
-		<title>Piano formativo personalizzato</title>
-	</head>
-	
-	<body>
-		<table border="1" id="pianoFormativoPersonalizzato">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Formatore</th>
-					<th>Nome</th>
-					<th>Categoria</th>
-					<th>Descrizione</th>
-					<th>Indice contenuti</th>
-					<th>numero lezioni</th>
-					<th>Costo</th>
-					<th>Giorno</th>
-					<th>Orario</th>
-				</tr>
-			</thead>
-			<tbody>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+	    <!-- Bootstrap CSS -->
+  		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    	
+	    <link href="TemplateStyle.css" rel="stylesheet">
+    	<title>Visualizzazione Profilo</title>
+  	</head>
+  	
+  	<body>
+		
+		<%@include file="/view/fragments/Header.jsp" %>
+		
+		
+		<div class="page">
+			<br><br>
+			<div class="container">
+				<h1>Piano formativo consigliato</h1>
+				<span class="row border border-primary">
 <%
-				for (int i = 0; i < pianoFormativoPersonalizzato.size(); i++) {
-					Stato gene = pianoFormativoPersonalizzato.getGene(i);
+					for (int i = 0; i < 4; i++) {
+						Stato gene = individuo.getGene(i);
 %>
-					<tr>
-					    <td><%= gene.getPercorsoFormativo().getId() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getId_formatore() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getNome() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getCategoria() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getDescrizione() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getIndice_contenuti() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getNum_lezioni() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getCosto() %></td>
-				    	<td><%= gene.getGiorno() %></td>
-				    	<td><%= gene.getOrario() %></td>
-					</tr>
+						<span class="col-sm border border-primary">
+				    		<%//= gene.getPercorsoFormativo().getId_formatore() %><br>
+				    		Nome<br>
+				    		Cognome<br><br>
+				    		<%= gene.getPercorsoFormativo().getNome() %><br><br>
+							Descrizione: <%= gene.getPercorsoFormativo().getDescrizione() %><br><br>
+							giorno: <%= gene.getGiorno() %><br>
+							Ore: <%= gene.getOrario() %><br><br>
+ 							<%= gene.getPercorsoFormativo().getNum_lezioni() %> lezioni<br>
+							Costo: <%= gene.getPercorsoFormativo().getCosto() %> &#x20AC;<br><br>
+							<button id="infoButton">Info</button>
+							<button id="iscrivitiButton">Iscriviti</button>
+						</span>
 <%
-				}
+					}
 %>
-			</tbody>
-		</table>
-	</body>
+  				</span>
+  				 				
+  				<br><br>
+  				
+  				<h1>Percorsi formativi consigliati</h1>
+  				<span class="row border border-primary">
+<%
+					for (int i = 4; i < 10; i++) {
+						Stato gene = individuo.getGene(i);
+						if (i == 7) {
+%>
+							</span>
+							<span class="row border border-primary">
+<%
+						}
+%>
+						<span class="col-sm border border-primary">
+				    		<%//= gene.getPercorsoFormativo().getId_formatore() %><br>
+				    		<%= gene.getPercorsoFormativo().getNome() %><br><br>
+				    		Nome<br>
+				    		Cognome<br><br>
+				    		Costo: <%= gene.getPercorsoFormativo().getCosto() %> &#x20AC;<br>
+						</span>
+<%
+					}
+%>
+  				</span>
+				
+				<br>	
+				
+			</div>
+		</div>
+		
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+		
+ 	</body>
 </html>

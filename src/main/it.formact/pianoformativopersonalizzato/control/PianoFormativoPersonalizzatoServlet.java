@@ -13,13 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.CategoriaDao;
-import model.dao.InteresseStudenteDao;
 import model.dao.PianoFormativoPersonalizzatoDao;
 import model.dao.PreferenzaStudenteDao;
 import model.dao.StudenteDao;
 import model.entity.CategoriaEntity;
-import model.entity.InteresseStudenteEntity;
-import model.entity.PercorsoFormativoEntity;
 import model.entity.PreferenzaStudenteEntity;
 import model.entity.StudenteEntity;
 import pianoformativopersonalizzato.service.Individuo;
@@ -69,41 +66,42 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 	    			
 	    			PianoFormativoPersonalizzatoDao pianoFormativoPersonalizzatoDao = new PianoFormativoPersonalizzatoDao();
 	    			ArrayList<String> giorniLiberi = pianoFormativoPersonalizzatoDao.doRetrieveGiorniLiberi(preferenze);
-	    			System.out.println(giorniLiberi);
+//	    			System.out.println(giorniLiberi);
 	    			
 	    			// Mi ricavo tutti i percorsi formativi con i giorni liberi
 	    			ArrayList<Stato> spazioStati = pianoFormativoPersonalizzatoDao.doRetrieveSpazioStati(giorniLiberi);
-	    			for (int i = 0; i < spazioStati.size(); i++) {
-	    				System.out.println(spazioStati.get(i));
-	    			}
+//	    			for (int i = 0; i < spazioStati.size(); i++) {
+//	    				System.out.println(spazioStati.get(i));
+//	    			}
 	    			
 	    			// Mi ricavo gli interessi di uno studente
 	    			ArrayList<String> interessi = pianoFormativoPersonalizzatoDao.doRetrieveInteressiStudente(idStudente);
-	    			System.out.println(interessi);
+//	    			System.out.println(interessi);
 	    			
 	    			CategoriaDao categoriaDao = new CategoriaDao();
 	    			ArrayList<CategoriaEntity> categorie = categoriaDao.doRetrieveAll();
-	    			for (CategoriaEntity categoria : categorie) {
-	    				System.out.println(categoria);
-	    			}
+//	    			for (CategoriaEntity categoria : categorie) {
+//	    				System.out.println(categoria);
+//	    			}
+	    			Individuo individuo = null;
 	    			
-	    			Individuo pianoFormativoPersonalizzato = null;
+	    			System.out.println(spazioStati.size());
 	    			
 	    			int n = spazioStati.size();
 	    			if (n <= 0) {
-	    				pianoFormativoPersonalizzato = new Individuo();
+	    				individuo = new Individuo();
 	    			}
 	    			else if (n > 0 && n < 11) {
-	    				pianoFormativoPersonalizzato = new Individuo(spazioStati);
+	    				individuo = new Individuo(spazioStati);
 	    			}
 	    			else {
 	    				// Eseguo l'algoritmo;
 	    				PianoFormativoPersonalizzatoGA ga = new PianoFormativoPersonalizzatoGA();
-	    				pianoFormativoPersonalizzato = ga.getPianoFormativoPersonalizzato(spazioStati, giorniLiberi, interessi, categorie);
+	    				//pianoFormativoPersonalizzato = new Individuo(spazioStati); 
+	    				individuo = ga.getPianoFormativoPersonalizzato(spazioStati, giorniLiberi, interessi, categorie);
 	    			}
 	    			
-	    			session.setAttribute("pianoFormativoPersonalizzato", pianoFormativoPersonalizzato);
-	    			
+	    			session.setAttribute("individuo", individuo);
 	    			/*
 	    			 	Giorni liberi: [giovedì, lunedì]
 					 	Interessi:     [Java, Python, HTML, CSS]

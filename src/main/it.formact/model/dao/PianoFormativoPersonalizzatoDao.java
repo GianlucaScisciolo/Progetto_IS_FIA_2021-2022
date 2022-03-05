@@ -13,7 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.dao.DaoInterface;
-import model.entity.Disponibilit‡Entity;
+import model.entity.Disponibilit√†Entity;
 import model.entity.InteresseEntity;
 import model.entity.PercorsoFormativoEntity;
 import model.entity.PreferenzaStudenteEntity;
@@ -45,11 +45,11 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 			return giorniLiberi;
 		}
 		
-		String selectSQL = "SELECT giornoSettimana FROM disponibilit‡";
+		String selectSQL = "SELECT giornoSettimana FROM disponibilit√†";
 		selectSQL += " WHERE ( ";
-		selectSQL += " disponibilit‡.id = " + preferenze.get(0).getDisponibilita();
+		selectSQL += " disponibilit√†.id = " + preferenze.get(0).getDisponibilita();
 		for (int i = 1; i < preferenze.size(); i++) {
-			selectSQL += " OR disponibilit‡.id = " + preferenze.get(i).getDisponibilita();
+			selectSQL += " OR disponibilit√†.id = " + preferenze.get(i).getDisponibilita();
 		}
 		selectSQL += " )";
 				
@@ -87,16 +87,16 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 			return spazioStati;
 		}
 		
-		String selectSQL = "SELECT * FROM percorso_formativo, disponibilit‡ ";
+		String selectSQL = "SELECT * FROM percorso_formativo, disponibilit√† ";
 		selectSQL += " WHERE ";
-		selectSQL += " percorso_formativo.idpercorso_formativo = disponibilit‡.percorsoFormativo";
-		selectSQL += " AND disponibilit‡.giornoSettimana = '" + giorniLiberi.get(0) + "'";
+		selectSQL += " percorso_formativo.idpercorso_formativo = disponibilit√†.percorsoFormativo";
+		selectSQL += " AND ( disponibilit√†.giornoSettimana = '" + giorniLiberi.get(0) + "'";
 		
 		for (int i = 1; i < giorniLiberi.size(); i++) {
-			selectSQL += " OR disponibilit‡.giornoSettimana = '" + giorniLiberi.get(i) + "'";
+			selectSQL += " OR disponibilit√†.giornoSettimana = '" + giorniLiberi.get(i) + "'";
 		}
 		
-		selectSQL += "ORDER BY RAND()";
+		selectSQL += " ) ORDER BY RAND()";
 		
 		try {
 			connection = ds.getConnection();

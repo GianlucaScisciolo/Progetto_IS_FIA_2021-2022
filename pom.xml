@@ -20,9 +20,21 @@
         		<artifactId>maven-war-plugin</artifactId>
         		<version>3.2.3</version>
       		</plugin>
+      		<!--
+      		<plugin>
+      			<groupId>formAct</groupId>
+      			<artifactId>formAct</artifactId>
+      			<version>0.0.1-SNAPSHOT</version>
+      			<configuration>
+      				<url>https://github.com/fabio3649/formAct</url>
+      				<server>TomcatServer</server>
+      				<path>/formAct</path>
+      			</configuration>
+      		</plugin>
+      		-->
     	</plugins>
-    </build>
-    
+  	</build>
+  	
     <dependencies>
   		<dependency>
       		<groupId>org.uma.jmetal</groupId>
@@ -39,6 +51,9 @@
       		<artifactId>jmetal-example</artifactId>
       		<version>5.11</version>
     	</dependency>
+  
+
+    	
     </dependencies>
     
 </project>

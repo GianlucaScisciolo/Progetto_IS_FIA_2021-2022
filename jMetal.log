@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-02-25T15:44:04.574936700Z</date>
-  <millis>1645803844574</millis>
-  <nanos>936700</nanos>
+  <date>2022-03-06T01:24:11.827688400Z</date>
+  <millis>1646529851827</millis>
+  <nanos>688400</nanos>
   <sequence>0</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -14,27 +14,39 @@
   <message>Loggers configured with null</message>
 </record>
 <record>
-  <date>2022-02-25T15:44:04.639335300Z</date>
-  <millis>1645803844639</millis>
-  <nanos>335300</nanos>
+  <date>2022-03-06T01:24:11.886056400Z</date>
+  <millis>1646529851886</millis>
+  <nanos>56400</nanos>
   <sequence>1</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>pianoformativopersonalizzato.service.Main</class>
+  <class>org.uma.jmetal.example.singleobjective.RandomSearchRunner</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Usage: numberOfSolutions granularity distributionIndex</message>
+  <message>Total execution time: 1070ms</message>
 </record>
 <record>
-  <date>2022-02-25T15:44:04.639335300Z</date>
-  <millis>1645803844639</millis>
-  <nanos>335300</nanos>
+  <date>2022-03-06T01:24:11.889082100Z</date>
+  <millis>1646529851889</millis>
+  <nanos>82100</nanos>
   <sequence>2</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
-  <class>pianoformativopersonalizzato.service.Main</class>
+  <class>org.uma.jmetal.example.singleobjective.RandomSearchRunner</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Using default parameters</message>
+  <message>Fitness: -578.0</message>
+</record>
+<record>
+  <date>2022-03-06T01:24:11.890056900Z</date>
+  <millis>1646529851890</millis>
+  <nanos>56900</nanos>
+  <sequence>3</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.example.singleobjective.RandomSearchRunner</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Solution: 0110011111110111101111010100011111111011100110110100110010111100100111111111011111011011110100110110111100101111110110001110000110101001000010001110000010001111100011000001011111011001101100111110110001111111010110011011111011000001101111111111111010000100100011010110110001110000100100101110111011100000111111010011101001101110010100010100101111110011101001100011000100001010011000100000111011101011110111111011100011011011010111110110100111001111000101111100100111101000101011110011110010111100111110100011111101111111111011011011111011000111101011000101010111000111101011100001010110111101101111101000110101111110110101111010110101100101110111000110110011011101101001000110011111000111010010001100010001011111000101000100101100001011110001110011111001100000001101101000111011000111110010010111100101101000001101011111101011111111110101010000110001111011100011100000100110000000010011101010100000001110011101010011010100111110110110101110100011010000000001111101011011111011010011000011100001110110011011100110001000001001</message>
 </record>
 </log>

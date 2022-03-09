@@ -51,8 +51,16 @@
       		<artifactId>jmetal-example</artifactId>
       		<version>5.11</version>
     	</dependency>
-  
-
+  		
+  		<!--
+  		<dependency>
+  			<groupId>formAct</groupId>
+  			<artifactId>formAct</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+  			<type>jar</type>
+  			
+		</dependency>
+		-->
     	
     </dependencies>
     

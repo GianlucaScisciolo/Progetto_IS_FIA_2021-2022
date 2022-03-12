@@ -2,26 +2,37 @@ package pianoformativopersonalizzato.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.CategoriaDao;
-import model.dao.PianoFormativoPersonalizzatoDao;
 import model.dao.PreferenzaStudenteDao;
 import model.dao.StudenteDao;
 import model.entity.CategoriaEntity;
 import model.entity.PreferenzaStudenteEntity;
 import model.entity.StudenteEntity;
+import modelfia.dao.PianoFormativoPersonalizzatoDao;
 import pianoformativopersonalizzato.service.Individuo;
 import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoGA;
 import pianoformativopersonalizzato.service.Stato;
+
+
+
+
+
+
+
 
 /**
  * Servlet implementation class PianoFormativoPersonalizzatoServlet
@@ -85,7 +96,7 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 //	    			}
 	    			Individuo individuo = null;
 	    			
-	    			System.out.println(spazioStati.size());
+//	    			System.out.println(spazioStati.size());
 	    			
 	    			int n = spazioStati.size();
 	    			if (n <= 0) {

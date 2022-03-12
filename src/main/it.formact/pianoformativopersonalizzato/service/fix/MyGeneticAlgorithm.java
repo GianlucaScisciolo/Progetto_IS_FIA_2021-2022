@@ -12,13 +12,14 @@ import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.comparator.ObjectiveComparator;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
-import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 @SuppressWarnings("serial")
 public class MyGeneticAlgorithm<S extends Solution<?>> extends GenerationalGeneticAlgorithm<S> {
 	  private Comparator<S> comparator;
 	  private long initComputingTime;
 	  private long thresholdComputingTime;
+	  private S bestIndividual;
+	  private int numberGeneration;
 
 	public MyGeneticAlgorithm(Problem<S> problem, int maxEvaluations, int populationSize,
 			CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator, SelectionOperator<List<S>, S> selectionOperator,
@@ -28,6 +29,12 @@ public class MyGeneticAlgorithm<S extends Solution<?>> extends GenerationalGenet
 		super(problem, maxEvaluations, populationSize, crossoverOperator, mutationOperator, selectionOperator, evaluator);
 		
 		this.comparator = new ObjectiveComparator<S>(0);
+		this.bestIndividual = null;
+		this.numberGeneration = 1;
+	}
+	
+	public S getBestIndividual() {
+		return this.bestIndividual;
 	}
 	
 	public void setMaxComputingTime (long maxComputingTime) {
@@ -54,12 +61,20 @@ public class MyGeneticAlgorithm<S extends Solution<?>> extends GenerationalGenet
 	
 	@Override 
 	protected List<S> replacement(List<S> population, List<S> offspringPopulation) {
+		System.out.println("Popolazione numero " + this.numberGeneration + ":");
+		for (int i = 0; i < population.size(); i++) {
+			System.out.print(population.get(i));
+		}
+		System.out.println();
+		this.numberGeneration++;
+		
 		int populationSize = population.size();
 		int offspringPopulationSize = 0;
 		
 		if (populationSize >= 10) {
 			offspringPopulationSize = populationSize / 100 * 10;
 			Collections.sort(population, this.comparator);
+			this.bestIndividual = population.get(0);
 			for (int i = 0; i < offspringPopulationSize; i++) {
 				offspringPopulation.add(population.get(i));
 			}
@@ -68,8 +83,11 @@ public class MyGeneticAlgorithm<S extends Solution<?>> extends GenerationalGenet
 				offspringPopulation.remove(offspringPopulation.size() - 1);
 			}
 		}
-		
+		else if (populationSize < 10 && populationSize > 0) {
+			Collections.sort(population, this.comparator);
+			this.bestIndividual = population.get(0);
+		}
 		return offspringPopulation;
-	  }
+	}
 
 }

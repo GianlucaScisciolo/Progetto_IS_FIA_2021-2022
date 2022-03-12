@@ -7,7 +7,7 @@ import org.uma.jmetal.problem.integerproblem.impl.AbstractIntegerProblem;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
 import model.entity.CategoriaEntity;
-import model.entity.PercorsoFormativoEntity;
+
 
 public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem {
 	
@@ -94,30 +94,33 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 	}
 	*/
 
-
-
 	@Override
 	public IntegerSolution evaluate(IntegerSolution integerSolution) {
 		ArrayList<Integer> codifica = (ArrayList<Integer>) integerSolution.variables();
-		ArrayList<Integer> geniControllati = new ArrayList<>();
+		ArrayList<Integer> idPercorsiContenutoGeniControllati = new ArrayList<>();
 		int punteggio = 0;
 		int size = 10;
 		int i = 0;
 		while(i < size) {
-			Integer gene = codifica.get(i);
+			int gene = codifica.get(i);
+			Stato contenutoGene = this.getSpazioStati().get(gene);
+			int idPercorsoContenutoGene = contenutoGene.getPercorsoFormativo().getId();
 			Boolean duplicato;
 			
-			if (i == 0) {
+			if (i <= 1) {
 				duplicato = false;
 			}
 			else {
-				duplicato = geniControllati.contains(gene);
+				duplicato = idPercorsiContenutoGeniControllati.contains(idPercorsoContenutoGene);
 			}
 			
-			geniControllati.add(gene);
+			idPercorsiContenutoGeniControllati.add(idPercorsoContenutoGene);
 			
 			if (duplicato == false) {
 				punteggio += this.calcolaPunteggioGene(gene);
+			}
+			else {
+				punteggio -= 10;
 			}
 			
 			i++;
@@ -149,15 +152,19 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 			regexInteresse = "/" + interessi.get(i) + "/g";
 						
 			if (risultatoInteresse == false) {
+				// faccio un controllo con il nome del percorso formativo
 				risultatoInteresse = nomePercorsoFormativo.matches(regexInteresse);
 				if (risultatoInteresse == true) { 
-					valoreInteresse += 5;
+					valoreInteresse += 10;
+					//System.out.println("+ 10 by nome");
 				}
+				// faccio un controllo con l'indice dei contenuti
 				else {
 					risultatoInteresse = indiceContenuti.matches(regexInteresse);
 					if (risultatoInteresse == true) { 
-						valoreInteresse += 5;
+						valoreInteresse += 10;
 					}
+					//System.out.println("+ 10 by indiceContenuti");
 				}
 			}
 			/*
@@ -168,7 +175,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 				}
 			}
 			*/
-			if (risultatoInteresse == true && risultatoCategoria == true) {
+			if (risultatoInteresse == true/* && risultatoCategoria == true*/) {
 				break;
 			}
 		}
@@ -184,5 +191,33 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		return punteggio;
 		
 	}
-
+	
+	private void orderSolution (IntegerSolution solution) {
+		if (solution == null || solution.variables().size() <= 0) {
+			new IllegalStateException("Errore, codifica vuota");
+		}
+		
+		ArrayList<Integer> geni = (ArrayList<Integer>) solution.variables();
+		ArrayList<Stato> contenutoGeni = new ArrayList<>();
+		
+		for (int i = 0; i < geni.size(); i++) {
+			int gene = geni.get(i);
+			contenutoGeni.add(this.getSpazioStati().get(gene));
+		}
+		String str;
+		contenutoGeni.sort(null);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

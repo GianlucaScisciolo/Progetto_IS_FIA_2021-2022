@@ -3,11 +3,7 @@ package pianoformativopersonalizzato.service;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.uma.jmetal.problem.integerproblem.impl.AbstractIntegerProblem;
-import org.uma.jmetal.solution.integersolution.IntegerSolution;
 
-import model.entity.CategoriaEntity;
-import model.entity.PercorsoFormativoEntity;
 
 public class Individuo {
 	
@@ -20,11 +16,6 @@ public class Individuo {
 	public Individuo(ArrayList<Stato> codifica) {
 		this.codifica = codifica;
 	}
-	
-	
-	
-	
-	
 	
 	public ArrayList<Stato> getCodifica() {
 		return this.codifica;

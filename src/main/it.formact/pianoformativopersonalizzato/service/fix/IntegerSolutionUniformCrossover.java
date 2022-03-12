@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
-import org.uma.jmetal.solution.binarysolution.BinarySolution;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 import org.uma.jmetal.util.errorchecking.Check;
 import org.uma.jmetal.util.errorchecking.JMetalException;
@@ -46,8 +45,29 @@ public class IntegerSolutionUniformCrossover implements CrossoverOperator<Intege
 	  public List<IntegerSolution> execute(List<IntegerSolution> solutions) {
 	    Check.notNull(solutions);
 	    Check.that(solutions.size() == 2, "There must be two parents instead of " + solutions.size());
-
-	    return doCrossover(crossoverProbability, solutions.get(0), solutions.get(1));
+//	    System.out.println("Crossover:");
+//	    System.out.print(solutions.get(0));
+//	    System.out.print(solutions.get(1));
+	    
+	    List<IntegerSolution> solutionsCrossover = 
+	    		doCrossover(crossoverProbability, solutions.get(0), solutions.get(1));
+//	    System.out.println("--------------------------");
+//	    System.out.print(solutionsCrossover.get(0));
+//	    System.out.print(solutionsCrossover.get(1));
+//	    System.out.println("--------------------------");
+//	    System.out.println();
+//	    System.out.println(solutions.size());
+	    
+//	    System.out.println("Pre:");
+//	    for (int i = 0; i < solutions.size(); i++) {
+//	    	System.out.print(solutions.get(i));
+//	    }
+//	    System.out.println("Post:");
+//	    for (int i = 0; i < solutionsCrossover.size(); i++) {
+//	    	System.out.print(solutionsCrossover.get(i));
+//	    }
+	    
+	    return solutionsCrossover;
 	  }
 	
 	
@@ -58,22 +78,29 @@ public class IntegerSolutionUniformCrossover implements CrossoverOperator<Intege
 	    offspring.add((IntegerSolution) parent1.copy());
 	    offspring.add((IntegerSolution) parent2.copy());
 		
-	    if (crossoverRandomGenerator.getRandomValue() < probability) {
+	    if (crossoverRandomGenerator.getRandomValue() <= probability) {	    	
 	    	Random random = new Random();
-	    	for (int variableIndex = 0; variableIndex < parent1.variables().size(); variableIndex++) {
-	    		//random.nextInt(max + min) + min;
-	    		int randomNumber = random.nextInt(1 + 0) + 0;
+	    	for (int i = 0; i < parent1.variables().size(); i++) {
+	    		int geneParent1 = parent1.variables().get(i);
+	    		int geneParent2 = parent2.variables().get(i);
+	    			    		
+	    		// numero casuale: 0 oppure 1
+	    		int randomNumber = random.nextInt(2);
+//	    		System.out.println(randomNumber);
+	    		
 	    		if (randomNumber == 0) {
-	    			offspring.get(0).variables().set(variableIndex, parent1.variables().get(variableIndex));
-	    			offspring.get(1).variables().set(variableIndex, parent2.variables().get(variableIndex));	    			
+	    			offspring.get(0).variables().set(i, geneParent1);
+	    			offspring.get(1).variables().set(i, geneParent2);	    			
 	    		}
 	    		else {
-	    			offspring.get(1).variables().set(variableIndex, parent1.variables().get(variableIndex));
-	    			offspring.get(0).variables().set(variableIndex, parent2.variables().get(variableIndex));
+	    			offspring.get(0).variables().set(i, geneParent2);
+	    			offspring.get(1).variables().set(i, geneParent1);
 	    		}
 	    	}
 	    }
 	    
+//	    System.out.print(offspring.get(0));
+//	    System.out.print(offspring.get(1));
 		return offspring;
 	}
 

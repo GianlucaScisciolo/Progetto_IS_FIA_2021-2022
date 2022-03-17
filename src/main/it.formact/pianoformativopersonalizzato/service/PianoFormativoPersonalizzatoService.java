@@ -2,6 +2,8 @@ package pianoformativopersonalizzato.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 import model.dao.CategoriaDao;
@@ -13,6 +15,7 @@ import model.entity.StudenteEntity;
 import modelfia.dao.PianoFormativoPersonalizzatoDao;
 import pianoformativopersonalizzato.geneticalgorithm.Individuo;
 import pianoformativopersonalizzato.geneticalgorithm.PianoFormativoPersonalizzatoGA;
+import pianoformativopersonalizzato.geneticalgorithm.PunteggioComparator;
 import pianoformativopersonalizzato.geneticalgorithm.Stato;
 
 
@@ -57,6 +60,12 @@ public class PianoFormativoPersonalizzatoService {
 		int numeroGeniDaOrdinare = 4;
 		if (individuo.size() > 0) {
 			individuo.deletePercorsiDuplicatiByNome();
+			for (int i = 0; i < individuo.getCodifica().size(); i++)
+			System.out.println("|||| " + individuo.getCodifica().get(i).getPunteggio() + " ||||");
+			System.out.println();
+			Collections.sort(individuo.getCodifica(), new PunteggioComparator(-1));
+			for (int i = 0; i < individuo.getCodifica().size(); i++)
+				System.out.println("|||| " + individuo.getCodifica().get(i).getPunteggio() + " ||||");
 			if (individuo.size() < 4) {
 				numeroGeniDaOrdinare = individuo.size();
 			}

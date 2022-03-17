@@ -11,6 +11,7 @@ public class Stato implements Comparable<Stato> {
 	private PercorsoFormativoEntity percorsoFormativo;
 	private String giorno;
 	private LocalTime orario;
+	private int punteggio;
 	
 	public Stato() {
 		
@@ -20,6 +21,7 @@ public class Stato implements Comparable<Stato> {
 		this.percorsoFormativo = percorsoFormativo;
 		this.giorno = giorno;
 		this.orario = orario;
+		this.punteggio = 0;
 	}
 
 	public PercorsoFormativoEntity getPercorsoFormativo() {
@@ -44,6 +46,14 @@ public class Stato implements Comparable<Stato> {
 
 	public void setOrario(LocalTime orario) {
 		this.orario = orario;
+	}
+	
+	public int getPunteggio() {
+		return punteggio;
+	}
+	
+	public void setPunteggio(int punteggio) {
+		this.punteggio = punteggio;
 	}
 	
 	@Override

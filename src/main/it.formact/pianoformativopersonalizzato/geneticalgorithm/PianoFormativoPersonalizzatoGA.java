@@ -69,6 +69,15 @@ public class PianoFormativoPersonalizzatoGA {
 			codifica.add(spazioStati.get(indici.get(i)));
 		}
         
+        PianoFormativoPersonalizzatoProblem problema = (PianoFormativoPersonalizzatoProblem) problem;
+        for (int i = 0; i < problema.getPunteggiIndividuoMigliore().size() - 1; i++) {
+        	codifica.get(i).setPunteggio(problema.getPunteggiIndividuoMigliore().get(i));
+        }
+        
+        System.out.println(problema.getPunteggiIndividuoMigliore());
+        for (int i = 0; i < codifica.size(); i++) {
+        	System.out.println(codifica.get(i).getPunteggio());
+        }
         
         return new Individuo(codifica);
 	}

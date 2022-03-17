@@ -18,6 +18,8 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 	private ArrayList<Stato> spazioStati;
 	private ArrayList<String> giorniLiberi; 
 	private ArrayList<String> interessi;
+	private ArrayList<Integer> punteggiIndividuoMigliore;
+	private int geniSize;
 	private Map<Integer, String> categorie;
 	
 	public PianoFormativoPersonalizzatoProblem (ArrayList<Stato> spazioStati, int geniSize, ArrayList<String> giorniLiberi, ArrayList<String> interessi, Map<Integer, String> categorie) {
@@ -25,18 +27,23 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		this.giorniLiberi = giorniLiberi;
 		this.interessi = interessi;
 		this.categorie = categorie;
+		this.geniSize = geniSize;
 				
 		setName("Piano formativo personalizzato");
 		setNumberOfVariables(spazioStati.size()); //
 		List<Integer> lowerBounds = new ArrayList<>();
 		List<Integer> upperBounds = new ArrayList<>();
-		for (int i = 0; i < geniSize; i++) {
+		for (int i = 0; i < this.geniSize; i++) {
 			lowerBounds.add(0);
 			upperBounds.add(spazioStati.size() - 1);
 		}
 		setVariableBounds(lowerBounds, upperBounds);
 		setNumberOfObjectives(1);
 		
+		this.punteggiIndividuoMigliore = new ArrayList<>();
+		for (int i = 0; i < this.geniSize + 1; i++) {
+			punteggiIndividuoMigliore.add(0);
+		}
 	}
 	
 	public ArrayList<Individuo> getIndividui() {
@@ -79,30 +86,74 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		this.categorie = categorie;
 	}
 	
+	public ArrayList<Integer> getPunteggiIndividuoMigliore() {
+		return punteggiIndividuoMigliore;
+	}
+
+	public void setPunteggiIndividuoMigliore(ArrayList<Integer> punteggiIndividuoMigliore) {
+		this.punteggiIndividuoMigliore = punteggiIndividuoMigliore;
+	}
+
+	public int getGeniSize() {
+		return geniSize;
+	}
+
+	public void setGeniSize(int geniSize) {
+		this.geniSize = geniSize;
+	}
+
 	@Override
 	public IntegerSolution evaluate(IntegerSolution integerSolution) {
 		ArrayList<Integer> codifica = (ArrayList<Integer>) integerSolution.variables();
-		ArrayList<Integer> idPercorsiContenutoGeniControllati = new ArrayList<>();
+//		ArrayList<Integer> idPercorsiContenutoGeniControllati = new ArrayList<>();
+		ArrayList<Integer> punteggiIndividuo = new ArrayList<>();
+		ArrayList<String> nomiAccettati = new ArrayList<>();
 		int punteggio = 0;
-		int size = 10;
+		int size = this.geniSize;
 		int i = 0;
 		while(i < size) {
+			int punteggioGene = 0;
 			int gene = codifica.get(i);
 			Stato contenutoGene = this.getSpazioStati().get(gene);
-			int idPercorsoContenutoGene = contenutoGene.getPercorsoFormativo().getId();
-			Boolean duplicato;
+//			int idPercorsoContenutoGene = contenutoGene.getPercorsoFormativo().getId();
+			String nomePercorso = contenutoGene.getPercorsoFormativo().getNome();
+			
+			Boolean risultato = false;
 			
 			if (i < 1) {
-				duplicato = false;
+				risultato = false;
 			}
 			else {
-				duplicato = idPercorsiContenutoGeniControllati.contains(idPercorsoContenutoGene);
+				risultato = nomiAccettati.contains(nomePercorso);
+//				String parola = "";
+//				for (int j = 0; j < nomePercorso.length(); j++) {
+//					String carattere = Character.toString(nomePercorso.charAt(j));
+//					System.out.println("<" + carattere + ">");
+//					if (carattere.equalsIgnoreCase(" ") == true) {
+//						System.out.println("|" + parola + "|");
+//						risultato = nomiAccettati.contains(parola);
+//						if (risultato) {
+//							break;
+//						}
+//						parola = "";
+//					}
+//					else {
+//						parola = parola + carattere;
+//					}
+//				}
+//				if (risultato == false) {
+//					risultato = nomiAccettati.contains(parola);
+//				}
+				
 			}
 			
-			idPercorsiContenutoGeniControllati.add(idPercorsoContenutoGene);
+//			idPercorsiContenutoGeniControllati.add(idPercorsoContenutoGene);
 			
-			if (duplicato == false) {
-				punteggio += this.calcolaPunteggioGene(gene, i);
+			if (risultato == false) {
+				nomiAccettati.add(nomePercorso);
+				punteggioGene = this.calcolaPunteggioGene(gene, i);
+				punteggiIndividuo.add(punteggioGene);
+				punteggio += punteggioGene;
 			}
 //			else {
 //				punteggio -= 10;
@@ -110,6 +161,11 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 			
 			i++;
 		}
+		punteggiIndividuo.add(punteggio);
+		if (punteggiIndividuo.get(punteggiIndividuo.size() - 1) > punteggiIndividuoMigliore.get(punteggiIndividuoMigliore.size() - 1)) {
+			punteggiIndividuoMigliore = punteggiIndividuo;
+		}
+		System.out.println(punteggiIndividuoMigliore);
 		integerSolution.objectives()[0] = -punteggio;
 		return integerSolution;
 	}

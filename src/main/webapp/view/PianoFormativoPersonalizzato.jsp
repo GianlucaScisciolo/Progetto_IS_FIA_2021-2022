@@ -3,8 +3,8 @@
 	contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     
-    import="pianoformativopersonalizzato.service.Individuo"
-    import="pianoformativopersonalizzato.service.Stato"
+    import="pianoformativopersonalizzato.geneticalgorithm.Individuo"
+    import="pianoformativopersonalizzato.geneticalgorithm.Stato"
     import="model.entity.PercorsoFormativoEntity"
 %>
 
@@ -38,7 +38,12 @@
 				<h1>Piano formativo consigliato</h1>
 				<span class="row border border-primary">
 <%
-					for (int i = 0; i < 4; i++) {
+					int i = 0;
+					while(i < individuo.size()) {
+						if (i == 4) {
+							break;
+						}
+						
 						Stato gene = individuo.getGene(i);
 %>
 						<span class="col-sm border border-primary">
@@ -55,6 +60,7 @@
 							<button id="iscrivitiButton">Iscriviti</button>
 						</span>
 <%
+						i++;
 					}
 %>
   				</span>
@@ -64,9 +70,10 @@
   				<h1>Percorsi formativi consigliati</h1>
   				<span class="row border border-primary">
 <%
-					for (int i = 4; i < 10; i++) {
+					int j = 0;
+					while(i < individuo.size()) {
 						Stato gene = individuo.getGene(i);
-						if (i == 7) {
+						if (j == 3) {
 %>
 							</span>
 							<span class="row border border-primary">
@@ -81,6 +88,8 @@
 				    		Costo: <%= gene.getPercorsoFormativo().getCosto() %> &#x20AC;<br>
 						</span>
 <%
+						j++;
+						i++;
 					}
 %>
   				</span>

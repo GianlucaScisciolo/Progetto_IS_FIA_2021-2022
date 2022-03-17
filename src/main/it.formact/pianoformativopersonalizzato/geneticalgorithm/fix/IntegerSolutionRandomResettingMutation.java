@@ -1,4 +1,4 @@
-package pianoformativopersonalizzato.service.fix;
+package pianoformativopersonalizzato.geneticalgorithm.fix;
 
 import java.util.Random;
 

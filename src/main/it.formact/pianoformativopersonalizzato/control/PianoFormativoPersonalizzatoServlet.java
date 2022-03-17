@@ -23,9 +23,10 @@ import model.entity.CategoriaEntity;
 import model.entity.PreferenzaStudenteEntity;
 import model.entity.StudenteEntity;
 import modelfia.dao.PianoFormativoPersonalizzatoDao;
-import pianoformativopersonalizzato.service.Individuo;
-import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoGA;
-import pianoformativopersonalizzato.service.Stato;
+import pianoformativopersonalizzato.geneticalgorithm.Individuo;
+import pianoformativopersonalizzato.geneticalgorithm.PianoFormativoPersonalizzatoGA;
+import pianoformativopersonalizzato.geneticalgorithm.Stato;
+import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoService;
 
 
 
@@ -67,60 +68,11 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 	    try {
 	    	if (action != null) {
 	    		if (action.equalsIgnoreCase("ottieniPianoFormativoPersonalizzato")) {
-	    			
-	    			StudenteDao studenteDao = new StudenteDao();
-	    			StudenteEntity studente = (StudenteEntity) studenteDao.doRetrieveByKey(1);
-	    			int idStudente = studente.getId();
-	    			
-	    			PreferenzaStudenteDao prefStudenteDao = new PreferenzaStudenteDao();    			
-	    			ArrayList<PreferenzaStudenteEntity> preferenze = (ArrayList<PreferenzaStudenteEntity>) prefStudenteDao.doRetrieveByStudent(idStudente);
-	    			
-	    			PianoFormativoPersonalizzatoDao pianoFormativoPersonalizzatoDao = new PianoFormativoPersonalizzatoDao();
-	    			ArrayList<String> giorniLiberi = pianoFormativoPersonalizzatoDao.doRetrieveGiorniLiberi(preferenze);
-//	    			System.out.println(giorniLiberi);
-	    			
-	    			// Mi ricavo tutti i percorsi formativi con i giorni liberi
-	    			ArrayList<Stato> spazioStati = pianoFormativoPersonalizzatoDao.doRetrieveSpazioStati(giorniLiberi);
-//	    			for (int i = 0; i < spazioStati.size(); i++) {
-//	    				System.out.println(spazioStati.get(i));
-//	    			}
-	    			
-	    			// Mi ricavo gli interessi di uno studente
-	    			ArrayList<String> interessi = pianoFormativoPersonalizzatoDao.doRetrieveInteressiStudente(idStudente);
-//	    			System.out.println(interessi);
-	    			
-	    			CategoriaDao categoriaDao = new CategoriaDao();
-	    			ArrayList<CategoriaEntity> categorie = categoriaDao.doRetrieveAll();
-//	    			for (CategoriaEntity categoria : categorie) {
-//	    				System.out.println(categoria);
-//	    			}
-	    			Individuo individuo = null;
-	    			
-//	    			System.out.println(spazioStati.size());
-	    			
-	    			int n = spazioStati.size();
-	    			if (n <= 0) {
-	    				individuo = new Individuo();
-	    			}
-	    			else if (n > 0 && n < 11) {
-	    				individuo = new Individuo(spazioStati);
-	    			}
-	    			else {
-	    				// Eseguo l'algoritmo;
-	    				PianoFormativoPersonalizzatoGA ga = new PianoFormativoPersonalizzatoGA();
-	    				//pianoFormativoPersonalizzato = new Individuo(spazioStati); 
-	    				individuo = ga.getPianoFormativoPersonalizzato(spazioStati, giorniLiberi, interessi, categorie);
-	    			}
-	    			
+	    			int idStudente = 3;
+	    			PianoFormativoPersonalizzatoService pianoFormativoPersonalizzatoService = new PianoFormativoPersonalizzatoService();
+	    			Individuo individuo = pianoFormativoPersonalizzatoService.ottieniPianoFormativoPersonalizzato(idStudente);
 	    			session.setAttribute("individuo", individuo);
-	    			/*
-	    			 	Giorni liberi: [giovedì, lunedì]
-					 	Interessi:     [Java, Python, HTML, CSS]
-	    			 */
-	    			
-	    			
-	    		    response.setStatus(200);
-	    			
+	    			response.setStatus(200);
 	    		}
 	    	}
 	    }

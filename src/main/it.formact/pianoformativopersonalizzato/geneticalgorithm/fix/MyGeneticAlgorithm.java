@@ -1,4 +1,4 @@
-package pianoformativopersonalizzato.service.fix;
+package pianoformativopersonalizzato.geneticalgorithm.fix;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -84,8 +84,12 @@ public class MyGeneticAlgorithm<S extends Solution<?>> extends GenerationalGenet
 			}
 		}
 		else if (populationSize < 10 && populationSize > 0) {
+			offspringPopulationSize = 1;
 			Collections.sort(population, this.comparator);
 			this.bestIndividual = population.get(0);
+			offspringPopulation.add(population.get(0));
+			Collections.sort(offspringPopulation, comparator);
+			offspringPopulation.remove(0);
 		}
 		return offspringPopulation;
 	}

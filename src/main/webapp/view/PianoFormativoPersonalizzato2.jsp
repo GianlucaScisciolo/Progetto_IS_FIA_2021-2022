@@ -3,8 +3,8 @@
 	contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     
-    import="pianoformativopersonalizzato.service.Individuo"
-    import="pianoformativopersonalizzato.service.Stato"
+    import="pianoformativopersonalizzato.geneticalgorithm.Individuo"
+    import="pianoformativopersonalizzato.geneticalgorithm.Stato"
     import="model.entity.PercorsoFormativoEntity"
 %>
 <%

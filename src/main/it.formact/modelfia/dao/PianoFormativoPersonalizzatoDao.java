@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,8 +18,7 @@ import model.dao.DaoInterface;
 
 import model.entity.PercorsoFormativoEntity;
 import model.entity.PreferenzaStudenteEntity;
-
-import pianoformativopersonalizzato.service.Stato;
+import pianoformativopersonalizzato.geneticalgorithm.Stato;
 
 public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 	
@@ -45,11 +46,11 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 			return giorniLiberi;
 		}
 		
-		String selectSQL = "SELECT giornoSettimana FROM disponibilità";
+		String selectSQL = "SELECT GIORNO FROM GIORNO_SETTIMANA";
 		selectSQL += " WHERE ( ";
-		selectSQL += " disponibilità.id = " + preferenze.get(0).getDisponibilita();
+		selectSQL += " GIORNO_SETTIMANA.ID = " + preferenze.get(0).getDisponibilita();
 		for (int i = 1; i < preferenze.size(); i++) {
-			selectSQL += " OR disponibilità.id = " + preferenze.get(i).getDisponibilita();
+			selectSQL += " OR GIORNO_SETTIMANA.ID = " + preferenze.get(i).getDisponibilita();
 		}
 		selectSQL += " )";
 				
@@ -60,7 +61,7 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while (rs.next()) {
-				String giornoLibero = rs.getString("giornoSettimana");	
+				String giornoLibero = rs.getString("GIORNO");	
 				giorniLiberi.add(giornoLibero);
 			}
 		}
@@ -172,7 +173,39 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		return interessiStudente;
 	}
 	
-	
+	public Map<Integer,String> doRetrieveCategorie() throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Map<Integer,String> categorie = new HashMap<Integer,String>();
+		
+		String selectSQL = "SELECT IDCATEGORIA, NOME FROM categoria ORDER BY IDCATEGORIA";
+		
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Integer idCategoria = rs.getInt("IDCATEGORIA");
+				String nome = rs.getString("NOME");
+				
+				categorie.put(idCategoria, nome);
+			}
+		}
+		finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		return categorie;
+	}
 	
 	
 	

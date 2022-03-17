@@ -1,8 +1,9 @@
-package pianoformativopersonalizzato.service;
+package pianoformativopersonalizzato.geneticalgorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.uma.jmetal.example.AlgorithmRunner;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
@@ -15,10 +16,9 @@ import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import model.entity.CategoriaEntity;
-
-import pianoformativopersonalizzato.service.fix.IntegerSolutionRandomResettingMutation;
-import pianoformativopersonalizzato.service.fix.IntegerSolutionUniformCrossover;
-import pianoformativopersonalizzato.service.fix.MyGeneticAlgorithm;
+import pianoformativopersonalizzato.geneticalgorithm.fix.IntegerSolutionRandomResettingMutation;
+import pianoformativopersonalizzato.geneticalgorithm.fix.IntegerSolutionUniformCrossover;
+import pianoformativopersonalizzato.geneticalgorithm.fix.MyGeneticAlgorithm;
 
 public class PianoFormativoPersonalizzatoGA {
 	
@@ -27,7 +27,7 @@ public class PianoFormativoPersonalizzatoGA {
 	}
 	
 	public Individuo getPianoFormativoPersonalizzato(ArrayList<Stato> spazioStati,
-			ArrayList<String> giorniLiberi, ArrayList<String> interessi, ArrayList<CategoriaEntity> categorie) {
+			ArrayList<String> giorniLiberi, ArrayList<String> interessi, Map<Integer, String> categorie) {
 		
 		double probabilitaCrossover = 0.8;
         double probabilitaMutazione = 0.2;
@@ -49,8 +49,8 @@ public class PianoFormativoPersonalizzatoGA {
         SolutionListEvaluator<IntegerSolution> evaluator = new SequentialSolutionListEvaluator<IntegerSolution>();
         MyGeneticAlgorithm<IntegerSolution> algoritmoGenetico = 
         		new MyGeneticAlgorithm<> (problem, valutazioneMassima, popolazioneSize, crossover, mutation, selection, evaluator);
-        algoritmoGenetico.setMaxComputingTime(6500);
-        
+        //algoritmoGenetico.setMaxComputingTime(6500);
+        algoritmoGenetico.setMaxComputingTime(3000);
         AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algoritmoGenetico).execute();
         
         IntegerSolution bestIndividual = algoritmoGenetico.getResult();
@@ -62,11 +62,13 @@ public class PianoFormativoPersonalizzatoGA {
         JMetalLogger.logger.info(String.format("Description: %s", algoritmoGenetico.getDescription()));
         
         List<Integer> indici = (ArrayList<Integer>) bestIndividual.variables();
+        System.out.println(bestIndividual.toString());
         ArrayList<Stato> codifica = new ArrayList<>();
         
         for (int i = 0; i < indici.size(); i++) {
 			codifica.add(spazioStati.get(indici.get(i)));
 		}
+        
         
         return new Individuo(codifica);
 	}

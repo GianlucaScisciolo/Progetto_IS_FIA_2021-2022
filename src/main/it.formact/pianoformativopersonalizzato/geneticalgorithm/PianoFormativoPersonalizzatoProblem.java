@@ -179,7 +179,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 //		}
 //		String str;
 //		contenutoGeni.sort(null);
-//	}
+//	} 
 	
 	public ArrayList<String> getInteresseAndArea (String interesse) {
 		

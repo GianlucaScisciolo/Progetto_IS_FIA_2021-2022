@@ -68,9 +68,8 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 	    try {
 	    	if (action != null) {
 	    		if (action.equalsIgnoreCase("ottieniPianoFormativoPersonalizzato")) {
-	    			int idStudente = 3;
 	    			PianoFormativoPersonalizzatoService pianoFormativoPersonalizzatoService = new PianoFormativoPersonalizzatoService();
-	    			Individuo individuo = pianoFormativoPersonalizzatoService.ottieniPianoFormativoPersonalizzato(idStudente);
+	    			Individuo individuo = pianoFormativoPersonalizzatoService.ottieniPianoFormativoPersonalizzato(request);
 	    			session.setAttribute("individuo", individuo);
 	    			response.setStatus(200);
 	    		}

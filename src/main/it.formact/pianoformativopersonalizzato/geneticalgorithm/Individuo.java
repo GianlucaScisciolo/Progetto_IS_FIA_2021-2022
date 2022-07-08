@@ -86,6 +86,7 @@ public class Individuo {
 	
 	public void sortByGiornoAndOrario (int numeroGeniDaOrdinare) {
 		
+		
 		ArrayList<Stato> stati = new ArrayList<>();
 		for (int i = 0; i < numeroGeniDaOrdinare; i++) {
 			stati.add(this.getGene(i));
@@ -102,4 +103,5 @@ public class Individuo {
 		}
 		
 	}
+	
 }

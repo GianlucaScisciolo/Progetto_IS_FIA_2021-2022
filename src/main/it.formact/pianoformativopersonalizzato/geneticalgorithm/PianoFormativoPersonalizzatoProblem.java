@@ -111,6 +111,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		int punteggio = 0;
 		int size = this.geniSize;
 		int i = 0;
+//		double costoTotale
 		while(i < size) {
 			int punteggioGene = 0;
 			int gene = codifica.get(i);
@@ -187,31 +188,31 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		
 		for (int i = 0; i < interessi.size(); i++) {
 			String interesse = interessi.get(i).toLowerCase();
-			String areaInteresse = "";
+			//String areaInteresse = "";
 			
-			ArrayList<String> interesseAndArea = this.getInteresseAndArea(interesse);
-			interesse = interesseAndArea.get(0);
-			areaInteresse = interesseAndArea.get(1);
+			//ArrayList<String> interesseAndArea = this.getInteresseAndArea(interesse);
+			//interesse = interesseAndArea.get(0);
+			//areaInteresse = interesseAndArea.get(1);
 			
-			System.out.println(interesse + "\n" + areaInteresse);
+			//System.out.println(interesse + "\n" + areaInteresse);
 			
 			// mi calcolo il punteggio dato al nome del percorso formativo 
 			// tramite gli interessi:
 			risultatoInteresse = nome.contains(interesse);
 			if (risultatoInteresse) {
-				punteggio += 15;
+				punteggio += 10;
 			}
 			
 			// mi calcolo il punteggio dato all'indice dei contenuti del percorso formativo 
 			// tramite gli interessi:
 			risultatoInteresse = indiceContenuti.contains(interesse);
 			if (risultatoInteresse) {
-				punteggio += 10;
+				punteggio += 5;
 			}
 			
 			// mi calcolo il punteggio dato alla categoria del percorso formativo
 			// tramite gli interessi:
-			risultatoCategoria = nomeCategoria.contains(areaInteresse);
+			risultatoCategoria = nomeCategoria.contains(interesse);
 			if (risultatoCategoria) {
 				punteggio += 5;
 			}
@@ -236,6 +237,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 //		String str;
 //		contenutoGeni.sort(null);
 //	} 
+	
 	
 	public ArrayList<String> getInteresseAndArea (String interesse) {
 		

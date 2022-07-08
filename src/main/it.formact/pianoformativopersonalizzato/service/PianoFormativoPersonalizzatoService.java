@@ -6,10 +6,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import model.dao.CategoriaDao;
+import model.dao.InteresseStudenteDao;
+import model.dao.IscrizioneDao;
 import model.dao.PreferenzaStudenteDao;
 import model.dao.StudenteDao;
 import model.entity.CategoriaEntity;
+import model.entity.InteresseStudenteEntity;
+import model.entity.IscrizioneEntity;
 import model.entity.PreferenzaStudenteEntity;
 import model.entity.StudenteEntity;
 import modelfia.dao.PianoFormativoPersonalizzatoDao;
@@ -22,9 +29,11 @@ import pianoformativopersonalizzato.geneticalgorithm.Stato;
 
 public class PianoFormativoPersonalizzatoService {
 	
-	public Individuo ottieniPianoFormativoPersonalizzato (int idStudente) throws SQLException {
+	public Individuo ottieniPianoFormativoPersonalizzato (HttpServletRequest request) throws SQLException {
+		HttpSession session = request.getSession(true);
 		StudenteDao studenteDao = new StudenteDao();
-		StudenteEntity studente = (StudenteEntity) studenteDao.doRetrieveByKey(idStudente);
+		StudenteEntity studente = (StudenteEntity) session.getAttribute("studente");
+		int idStudente = studente.getId();
 		PreferenzaStudenteDao preferenzaStudenteDao = new PreferenzaStudenteDao();
 		ArrayList<PreferenzaStudenteEntity> preferenze = (ArrayList<PreferenzaStudenteEntity>) preferenzaStudenteDao.doRetrieveByStudent(idStudente);
 //		for (int i = 0; i < preferenze.size(); i++) {
@@ -33,11 +42,19 @@ public class PianoFormativoPersonalizzatoService {
 		PianoFormativoPersonalizzatoDao pianoFormativoPersonalizzatoDao = new PianoFormativoPersonalizzatoDao();
 		ArrayList<String> giorniLiberi = pianoFormativoPersonalizzatoDao.doRetrieveGiorniLiberi(preferenze);
 		
-		// Mi ricavo tutti i percorsi formativi con i giorni liberi
-		ArrayList<Stato> spazioStati = pianoFormativoPersonalizzatoDao.doRetrieveSpazioStati(giorniLiberi);
+		// Mi ricavo tutti i percorsi formativi con i giorni liberi in cui lo studente non è iscritto
+		IscrizioneDao iscrizioneDao = new IscrizioneDao();
+		ArrayList<IscrizioneEntity> iscrizioni = (ArrayList<IscrizioneEntity>) iscrizioneDao.doRetrieveByStudent(idStudente);
+//		String costoMaxString = request.getParameter("costoMax");
+//		double costoMax = -1.0;
+//		if (! costoMaxString.equals("")) {
+//			costoMax = Double.parseDouble(costoMaxString);
+//		}
+		ArrayList<Stato> spazioStati = pianoFormativoPersonalizzatoDao.doRetrieveSpazioStati(giorniLiberi, iscrizioni/*, costoMax*/);
 //		for(int i = 0; i < spazioStati.size(); i++) {
 //			System.out.println(spazioStati.get(i).getPercorsoFormativo().getCosto());
 //		}
+		
 		// Mi ricavo gli interessi di uno studente
 		ArrayList<String> interessi = pianoFormativoPersonalizzatoDao.doRetrieveInteressiStudente(idStudente);
 		
@@ -71,6 +88,11 @@ public class PianoFormativoPersonalizzatoService {
 			}
 			individuo.sortByGiornoAndOrario(numeroGeniDaOrdinare);
 		}
+		System.out.println("||||||||||");
+		for(int i = 0; i < spazioStati.size(); i++) {
+			System.out.println(spazioStati.get(i).getPercorsoFormativo().getId());
+		}
+		
 		return individuo;
 	}
 }

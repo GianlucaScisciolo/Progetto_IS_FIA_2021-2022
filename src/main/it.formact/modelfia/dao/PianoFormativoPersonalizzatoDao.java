@@ -15,7 +15,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.dao.DaoInterface;
-
+import model.entity.InteresseEntity;
+import model.entity.InteresseStudenteEntity;
+import model.entity.IscrizioneEntity;
 import model.entity.PercorsoFormativoEntity;
 import model.entity.PreferenzaStudenteEntity;
 import pianoformativopersonalizzato.geneticalgorithm.Stato;
@@ -78,7 +80,7 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		return giorniLiberi;
 	}
 	
-	public ArrayList<Stato> doRetrieveSpazioStati(ArrayList<String> giorniLiberi) throws SQLException {
+	public ArrayList<Stato> doRetrieveSpazioStati(ArrayList<String> giorniLiberi, ArrayList<IscrizioneEntity> iscrizioni/*, double costoMax*/) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -91,13 +93,27 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		String selectSQL = "SELECT * FROM percorso_formativo, disponibilità";
 		selectSQL += " WHERE ";
 		selectSQL += " percorso_formativo.idpercorso_formativo = disponibilità.percorsoFormativo";
-		selectSQL += " AND ( disponibilità.giornoSettimana = '" + giorniLiberi.get(0) + "'";
 		
-		for (int i = 1; i < giorniLiberi.size(); i++) {
-			selectSQL += " OR disponibilità.giornoSettimana = '" + giorniLiberi.get(i) + "'";
+		if (iscrizioni.size() > 0) {
+			for (int i = 0; i < iscrizioni.size(); i++) {
+				selectSQL += " AND percorso_formativo.idpercorso_formativo != " + iscrizioni.get(i).getPercorsoFormativo();
+			}
 		}
 		
-		selectSQL += " ) ORDER BY RAND()";
+		if (giorniLiberi.size() > 0) {
+			selectSQL += " AND ( disponibilità.giornoSettimana = '" + giorniLiberi.get(0) + "'";
+			for (int i = 1; i < giorniLiberi.size(); i++) {
+				selectSQL += " OR disponibilità.giornoSettimana = '" + giorniLiberi.get(i) + "'";
+			}
+		}
+				
+		selectSQL += " )";
+		
+//		if (costoMax >= 0) {
+//			selectSQL += " AND percorso_formativo.costo <= " + costoMax;
+//		}
+		
+		selectSQL += " ORDER BY RAND()";
 		
 		try {
 			connection = ds.getConnection();
@@ -141,13 +157,13 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		ArrayList<String> interessiStudente = new ArrayList<String>();
+		ArrayList<String> interessiStudente = new ArrayList<>();
 		
 		String selectSQL = "SELECT * FROM interesse_studente, interesse ";
 		selectSQL += " WHERE ";
 		selectSQL += " interesse_studente.interesse = interesse.idinteresse";
 		selectSQL += " AND interesse_studente.studente = ?";
-				
+		
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
@@ -156,9 +172,15 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				String interesseStudente = rs.getString("nome");
+				InteresseEntity interesse = new InteresseEntity();
 				
-				interessiStudente.add(interesseStudente);
+				String nome = rs.getString("nome");
+//				String area = rs.getString("area");
+				
+				interesse.setNome(nome);
+//				interesse.set
+				
+				interessiStudente.add(nome);
 			}
 
 		} finally {

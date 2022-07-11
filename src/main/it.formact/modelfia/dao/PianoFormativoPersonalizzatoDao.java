@@ -16,12 +16,18 @@ import javax.sql.DataSource;
 
 import model.dao.DaoInterface;
 import model.entity.InteresseEntity;
-import model.entity.InteresseStudenteEntity;
+//import model.entity.InteresseStudenteEntity;
 import model.entity.IscrizioneEntity;
 import model.entity.PercorsoFormativoEntity;
 import model.entity.PreferenzaStudenteEntity;
 import pianoformativopersonalizzato.geneticalgorithm.Stato;
 
+/**
+ * 
+ * @author GIANLUCA
+ * 
+ * Questa classe si occupa di interrogare il DB per la parte del modulo intelligente.
+ */
 public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 	
 	private static DataSource ds;
@@ -38,6 +44,14 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		}
 	}
 	
+	/**
+	 * Il seguente metodo restituisce un array di giorni liberi in base alle preferenze di uno studente.
+	 * 
+	 * @param preferenze: un array di preferenze di uno studente
+	 * @return un array di giorni liberi
+	 * @throws SQLException
+	 * 
+	 */
 	public ArrayList<String> doRetrieveGiorniLiberi(ArrayList<PreferenzaStudenteEntity> preferenze) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -48,6 +62,8 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 			return giorniLiberi;
 		}
 		
+		// interrogo il database che ritorna un array di giorni costituiti solamente da quelli che lo studente 
+		// ha inserito come disponibilità. 
 		String selectSQL = "SELECT GIORNO FROM GIORNO_SETTIMANA";
 		selectSQL += " WHERE ( ";
 		selectSQL += " GIORNO_SETTIMANA.ID = " + preferenze.get(0).getDisponibilita();
@@ -80,7 +96,19 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		return giorniLiberi;
 	}
 	
-	public ArrayList<Stato> doRetrieveSpazioStati(ArrayList<String> giorniLiberi, ArrayList<IscrizioneEntity> iscrizioni/*, double costoMax*/) throws SQLException {
+	/**
+	 * Il seguente metodo restituisce lo spazio degli stati tramite i giorni liberi e le iscrizioni di uno studente:
+	 * per ogni stato presente nel DB:
+	 * - se è disponibile per almeno un giorno libero allora verrà selezionato;
+	 * - se è un percorso formativo che fa parte delle iscrizioni dello studente allora non verrà selezionato.
+	 * 
+	 * @param giorniLiberi
+	 * @param iscrizioni
+	 * @return lo spazio degli stati
+	 * @throws SQLException
+	 * 
+	 */
+	public ArrayList<Stato> doRetrieveSpazioStati(ArrayList<String> giorniLiberi, ArrayList<IscrizioneEntity> iscrizioni) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -108,10 +136,6 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		}
 				
 		selectSQL += " )";
-		
-//		if (costoMax >= 0) {
-//			selectSQL += " AND percorso_formativo.costo <= " + costoMax;
-//		}
 		
 		selectSQL += " ORDER BY RAND()";
 		
@@ -153,6 +177,14 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		return spazioStati;
 	}
 	
+	/**
+	 * Il seguente metodo restituisce gli interessi dello studente.
+	 * 
+	 * @param idStudente
+	 * @return gli interessi dello studente
+	 * @throws SQLException
+	 * 
+	 */
 	public ArrayList<String> doRetrieveInteressiStudente(int idStudente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -195,6 +227,13 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 		return interessiStudente;
 	}
 	
+	/**
+	 * Il seguente metodo restituisce tutte le categorie di percorsi formativi
+	 * 
+	 * @return tutte le categorie di percorsi formativi
+	 * @throws SQLException
+	 * 
+	 */
 	public Map<Integer,String> doRetrieveCategorie() throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -235,25 +274,36 @@ public class PianoFormativoPersonalizzatoDao implements DaoInterface {
 	
 	
 	
-
+	/**
+	 * Non ancora definito
+	 */
 	@Override
 	public int doSave(Object bean) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	/**
+	 * Non ancora definito
+	 */
 	@Override
 	public boolean doDelete(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	/**
+	 * Non ancora definito
+	 */
 	@Override
 	public Object doRetrieveByKey(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	/**
+	 * Non ancora definito
+	 */
 	@Override
 	public Object doRetrieveAll() throws SQLException {
 		// TODO Auto-generated method stub

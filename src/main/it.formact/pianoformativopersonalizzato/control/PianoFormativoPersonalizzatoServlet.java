@@ -28,13 +28,6 @@ import pianoformativopersonalizzato.geneticalgorithm.PianoFormativoPersonalizzat
 import pianoformativopersonalizzato.geneticalgorithm.Stato;
 import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoService;
 
-
-
-
-
-
-
-
 /**
  * Servlet implementation class PianoFormativoPersonalizzatoServlet
  */

@@ -2,20 +2,27 @@ package pianoformativopersonalizzato.geneticalgorithm;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author GIANLUCA
+ *
+ */
 public class PunteggioComparator implements Comparator<Stato> {
 	
-	/**
-	 * - se ordinamento < 0 allora l'ordinamento dovrà essere decrescente;
-	 * - se ordinamento >= 0 allora l'ordinamento dovrà essere crescente;
-	 * 
-	 * di default ordinamento = 0.
-	 */
 	private int ordinamento;
 	
 	public PunteggioComparator () {
 		this.ordinamento = 0;
 	}
 	
+	/**
+	 * Costruttore oggetto PunteggioComparator.
+	 * @param ordinamento: tipo di ordinamento: 
+	 * - se ordinamento < 0 allora l'ordinamento dovrà essere decrescente;
+	 * - se ordinamento >= 0 allora l'ordinamento dovrà essere crescente;
+	 * 
+	 * di default ordinamento = 0.
+	 */
 	public PunteggioComparator (int ordinamento) {
 		this.ordinamento = ordinamento;
 	}

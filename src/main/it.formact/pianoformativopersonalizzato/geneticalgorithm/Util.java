@@ -7,9 +7,22 @@ import java.util.Random;
 
 import model.entity.PercorsoFormativoEntity;
 
+/**
+ * Questa classe contiene una serie di metodi utili per la creazione e gestione dell'algoritmo genetico.
+ * 
+ * @author GIANLUCA
+ *
+ */
 public class Util {
 	
+	/**
+	 * Il seguente metodo genera una codifica degli individui.
+	 * 
+	 * @param numeroGeni: il numero di geni della codofica di ogni individuo.
+	 * @return
+	 */
 	public static ArrayList<Stato> generaCodifica(int numeroGeni) {
+		// Array contenente i giorni della settimana che vanno dal lunedì al venerdì.
 		ArrayList<String> giorniSettimana = new ArrayList<String>(
 				Arrays.asList("lunedì","martedì","mercoledì","giovedì","venerdì")
 		);
@@ -17,6 +30,7 @@ public class Util {
 		Random random = new Random();
 		ArrayList<Stato> codifica = new ArrayList<>();
 		
+		// Creo dei geni completamente casuali.
 		for (int i = 0; i < numeroGeni; i++) {
 			String giorno = giorniSettimana.get(random.nextInt(5));
 			
@@ -38,6 +52,7 @@ public class Util {
 			codifica.add(new Stato(percorso, giorno, orario));
 		}
 		
+		// codifica: array di stati (individuo). Ogni stato è un gene.
 		return codifica;
 	}
 	

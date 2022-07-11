@@ -37,7 +37,7 @@
       parametri:\\
       \begin{enumerate}
         \item Gli interessi dello studente.
-        \item lo storico dei percorsi formativi sostenuti dallo studente.
+        \item le iscrizioni dello studente
         \item I giorni della settimana in cui lo studente e' libero.
       \end{enumerate}%
       Inoltre, verranno visualizzati anche un insieme di massimo 6 percorsi formativi suggeriti.
@@ -51,7 +51,7 @@
         \begin{itemize}
           \item[$\circ$] completamente osservabile: in ogni momento l'agente ha a disposizione tutti i percorsi formativi;
           \item[$\circ$] stocastico: ad ogni azione dell'agente non sappiamo quale sara' il prossimo stato;
-          \item[$\circ$] episodico;
+          \item[$\circ$] episodico: la scelta di una azione non dipende dalle scelte fatte in "episodi" precedenti;
           \item[$\circ$] statico: l'ambiente e' sempre lo stesso;
           \item[$\circ$] discreto: le percezioni dell'agente sono limitate poiche' avra' un numero limitato di specifiche;
           \item[$\circ$] singolo: abbiamo un unico agente.
@@ -60,7 +60,7 @@
         \item Sensori:
         \begin{itemize}
           \item[$\circ$] gli interessi dello studente;
-          \item[$\circ$] lo storico dei percorsi formativi sostenuti dallo studente.
+          \item[$\circ$] le iscrizioni dello studente;
           \item[$\circ$] i giorni della settimana in cui lo studente e' libero;
         \end{itemize}
         
@@ -104,8 +104,7 @@
         \item Complessita' spaziale.
       \end{enumerate}
       Ovviamente, l'utente non vorra' aspettare molto tempo quindi, all'algoritmo gli daremo del tempo 
-      non superiore ai 5 secondi, mentre la visualizzazione del piano formativo avverra' dopo massimo 
-      7 secondi. 
+      non superiore ai 5 secondi + 2 secondi per la visualizzazione del piano formativo. Totale: 7 secondi.
         
   % Sezione 2
   \section{Progettazione dell'algoritmo genetico}
@@ -114,63 +113,67 @@
     % Sezione 2.1
     \subsection{Spazio degli stati}
       \label{spazioDegliStatiSubsection}
-      Lo spazio degli stati lo ricaviamo da una interrogazione al database ricavandoci i percorsi formativi
-      insegnati nei giorni della settimana in cui lo studente e' libero.\\
-      Abbiamo quindi un vettore (Vettore stati) di N percorsi formativi in cui abbiamo l'id presente nel database:\\
+      Lo spazio degli stati lo ricaviamo da una interrogazione al database: consideriamo solamente gli stati che hanno i percorsi formativi 
+      che sono insegnati nei giorni liberi dello studente e non fanno parte delle sue iscrizioni.\\
+      Abbiamo quindi un vettore (Vettore spazio stati) di N stati:\\
       \begin{figure}[h!]
         \centering
-        \caption{Vettore stati}
+        \caption{Vettore spazio stati}
         \includegraphics[scale=0.5]{spazioDegliStati.jpg}
         \label{vettoreStati}
-      \end{figure}\\
+      \end{figure}
+      
+      \newpage
       
     % Sezione 2.2
     \subsection{Codifica degli individui}
       \label{codificaDegliIndividuiSubsection}
-      Come codifica utilizzeremo un vettore di massimo 10 interi maggiori di 0.\\
+      Come codifica utilizzeremo un vettore di massimo 10 stati e, ogni stato della codifica rappresenta un gene.\\
       2 Esempi di individui:
-      \\\\\\\\\\\\\\\\\\\\
       \begin{figure}[h!]
         \centering
         \caption{Esempio individui}
         \includegraphics[scale=0.5]{esempiIndividui.jpg}
         \label{esempioIndividui}
       \end{figure}\\
-      Ogni intero rappresenta una posizione di un percorso formativo all'interno del vettore stati.\\
+      Ogni stato (o gene) di un individuo è lo stato i-esimo presente nel vettore spazio stati.\\
       Perche' massimo 10? perche' vogliamo ritornare un sottoinsieme di 10 percorsi formativi di cui i 
       4 percorsi formativi con punteggio più alto ordinati in base al giorno e all'orario faranno parte 
       del piano formativo e i percorsi formativi rimanenti diversi tra loro e non presenti 
       nel piano formativo faranno parte dei consigliati.\\
       Questo sara' il DNA della soluzione composta da massimo 10 geni. Quindi, ogni individuo non e' 
       altro che un piano formativo con dei percorsi formativi consigliati.\\
-      Ora, considerando il vettore stati e N il numero di percorsi formativi presente 
-      nel vettore stati:\\
+      Ora, considerando il vettore spazio stati e N il numero di percorsi formativi presente 
+      nel vettore spazio stati:\\
       \begin{itemize}
         \item se $ N = 0 $ allora ritorno un insieme vuoto senza eseguire l'algoritmo.
         \item se $ 0 < N \leq 10 $ allora ritorno tutti i percorsi formativi senza eseguire 
         l'algoritmo.
         \item se $ N > 10 $ allora eseguo l'algoritmo genetico e ritorno l'individuo trovato.
       \end{itemize}
+      N.B: Ogni stato contiene solamente un percorso formativo, quindi, alla fine della computazione dell'algoritmo, 
+      estrarro' i vari percorsi formativi presenti negli stati (o geni) dell'individuo migliore trovato.
+      
+      \newpage
       
     % Sezione 2.3
     \subsection{Passi dell'algoritmo genetico}
       \label{passiDellAlgoritmoGeneticoSubsection}
       Questi saranno i passi dell'algoritmo genetico:
-      \\\\\\\\\\\\\\\\\\\\
       \begin{figure}[h!]
         \centering
         \caption{Passi dell'algoritmo genetico}
         \includegraphics[scale=0.5]{passiAlgoritmoGenetico.jpg}
         \label{passiAlgoritmoGenetico}
       \end{figure}\\
-      
+            
     % Sezione 2.4
     \subsection{Inizializzo la popolazione}
       \label{inizializzoLaPopolazioneSubsection}
-      Sia N il numero di percorsi formativi presenti nel vettore stati, la nostra\\
+      Sia N il numero di percorsi formativi presenti nel vettore spazio stati, la nostra\\
       popolazione sara' composta da un numero K di individui tale che:\\ 
       $ K = \bigl\lfloor {N \over 3} \bigl\rfloor $.\\
-      All'inizio, tutti i K individui saranno generati in maniera random.\\
+      All'inizio, tutti i K individui saranno generati in maniera random (tranne nel caso in cui N $\leq$ 10).\\
       Esempi:
       \begin{figure}
         \centering
@@ -178,9 +181,11 @@
         \includegraphics[scale=0.5]{esempiPopolazioni.jpg}
         \label{esempiPopolazioni}
       \end{figure}
-      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+      
+      \newpage
+      
     % Sezione 2.5
-    \subsection{Valuto la popolazione}
+    \subsection{Valuto la popolazione (Da vedere)}
       \label{valutoLaPopolazioneSubsection}
       
       Come possiamo valutare la popolazione?\\
@@ -193,7 +198,7 @@
         vero. 
       \end{itemize}
       Dopo di che, una volta applicata la funzione di valutazione, ad ogni individuo gli sara' dato un valore di 
-      partenza che con la funzione di fitness (fit(codifica)) avremo' il grado di sopravvivenza di ciascun 
+      partenza che con la funzione di fitness (fitness(codifica)) avremo' il grado di sopravvivenza di ciascun 
       individuo. La funzione di fitness dipende dall'algoritmo di selezione utilizzato.\\
       Funzione obiettivo (funzioneObiettivo(codifica)) considerazioni:\\
       poiche' possono esistere 2 o piu' geni con lo stesso valore allora il punteggio sara' dato solo ai 
@@ -249,13 +254,15 @@
         \label{getPunteggioPseudocodice}
       \end{figure}
       
+      \newpage
+      
     % Sezione 2.6
     \subsection{Mi fermo? -- Criteri di arresto}
     \label{MiFermo?--CriteriDiArrestoSubsection}
     Criteri di arresto utilizzati:
     \begin{enumerate}
       \item Test Ottimalità: se raggiungiamo l’ottimo allora ci fermiamo.
-      \item Tempo di Esecuzione: dopo 10 secondi l’algoritmo termina.
+      \item Tempo di Esecuzione: dopo 5 secondi l’algoritmo termina.
     \end{enumerate}
     
     % Sezione 2.7
@@ -270,20 +277,22 @@
       \label{RouletteWheelSelection}
     \end{figure}
     \begin{enumerate}
-      \item fit(s) = f(s) / $\Sigma$ f(s).
+      \item fitness$_{i}(codifica) =\frac{f_{i}(codifica)}{\sum\limits_{j = 1}^{K} {f_{j} (codifica)}}$.
       \item andiamo a girare la ruota un numero di volte uguale al numero di individui presenti nella 
             popolazione.
     \end{enumerate} 
     
+    \newpage
+    
     Rank Selection:\\\\
-    fit(x) = (|P| - rank(x) + 1) / $\Sigma$ rank(x).\\
+    $ fitness(codifica) = \frac {(\mid P \mid - rank(codifica) + 1)} {\sum{rank(codifica)}}$\\
     E’ applicabile anche con valutazioni negative.\\
     Costa più della Roulette Wheel.\\
     
     K-way Tournament Selection:\\
-    Fissato un valore 1 < K < |P| arbitrario, si selezionano casualmente K individui per formare un 
+    Fissato un valore $1 < K < \mid P \mid$ arbitrario, si selezionano casualmente K individui per formare un 
     cosiddetto "torneo", all’interno del quale il migliore (con valutazione massima) passerà la 
-    selezione. Si ripete per M < |P| tornei, quindi fino ad ottenere un totale di M individui 
+    selezione. Si ripete per $M < \mid P \mid$ tornei, quindi fino ad ottenere un totale di M individui 
     selezionati.\\\\
     
     Quale tipo di selezione utilizzeremo?\\
@@ -292,7 +301,7 @@
     Scegliamo la k-way Tournament Selection.\\
     
     % Sezione 2.8
-    \subsection{Crossover}
+    \subsection{Crossover (Sono arrivato qui)}
     \label{Crossover}
     Single-point Crossover:\\
     Punto di taglio  = numero casuale tra 1 e 6.\\

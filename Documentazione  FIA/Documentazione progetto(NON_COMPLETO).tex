@@ -304,18 +304,18 @@
     \subsection{Crossover (Sono arrivato qui)}
     \label{Crossover}
     Single-point Crossover:\\
-    Punto di taglio  = numero casuale tra 1 e 6.\\
-    Esempio: 4
+    Punto di taglio  = numero casuale tra 1 e 9.\\
+    Esempio: 5
     \begin{figure}[h!]
       \centering
       \caption{Single-point Crossover}
       \includegraphics[scale=0.5]{Single-point Crossover.png}
       \label{Single-pointCrossover}
-    \end{figure}\\\\\\\\\\\\\\\\\\\\
+    \end{figure}
     
     
     Two-point Crossover:\\
-    Punti di taglio: 2 numeri casuali tra 1 e 6 diversi tra di loro.\\
+    Punti di taglio: 2 numeri casuali tra 1 e 9 diversi tra di loro.\\
     Esempio: 2, 6
     \begin{figure}[h!]
       \centering
@@ -324,9 +324,12 @@
       \label{Two-pointCrossover}
     \end{figure}
     
+    \newpage
+    
     K-point Crossover:\\
-    Punti di taglio: k numeri casuali tra 1 a 6 diversi tra loro. 0 < K <= 6\\
-    Esempio: K = 4 → 4 numeri casuali tra 1 e 6 diversi tra di loro → 1, 3, 5, 6
+    Punti di taglio: K numeri casuali tra 1 e 9 diversi tra loro. 1 $\leq$ K $\leq$ 9.\\
+    Esempio: K = 4 $\rightarrow$ 4 numeri casuali tra 1 e 9 diversi tra di loro.\\
+    Esempio: 1, 3, 5, 6
     \begin{figure}[h!]
       \centering
       \caption{K-point Crossover}
@@ -357,14 +360,14 @@
     \subsection{Mutazione}
     \label{Mutazione}
     Random resetting:\\
-    modifica casuale di un gene ad un altro valore.\\
+    modifica casuale di un gene in un altro gene.\\
     Esempio:\\
-    N = 20\\
-    \begin{itemize}
-      \item Scegliamo un gene casuale da mutare: il gene numero 2 → valore: 14.
-      \item Scegliamo un numero casuale da 0 a N-1 diverso da 14: 5.
-      \item Mutiamo il gene: 14 → 5.
-    \end{itemize}
+    N = 30\\
+    \begin{enumerate}
+      \item Scegliamo un gene casuale da mutare: il gene in posizione 2: S$_{14}$.
+      \item Scegliamo uno stato casuale dal vettore spazio stati diverso dallo stato S$_{14}$: S$_{5}$.
+      \item Mutiamo il gene: S$_{14} \rightarrow$ S$_{5}$.
+    \end{enumerate}
     \begin{figure}[h!]
       \centering
       \caption{Random Resetting}
@@ -375,7 +378,19 @@
     Swap:\\
     scambiamo di posto 2 geni scelti casualmente.\\
     Esempio:\\
-    scegliamo casualmente i geni 1 e 5.
+    \begin{enumerate}
+    	\item scegliamo casualmente 2 geni in posizione i e j: 
+    	\begin{enumerate}
+    		\item i = 1;
+    		\item j = 5.
+    	\end{enumerate}
+    	\item li scambiamo di posto.
+    	\begin{enumerate}
+    		\item i = 5;
+    		\item j = 1.
+    	\end{enumerate}
+    \end{enumerate}
+    
     \begin{figure}[h!]
       \centering
       \caption{Swap}
@@ -412,11 +427,11 @@
     \end{figure}
     
     Quale tipo di mutazione utilizzeremo?\\
-    Ricordiamo che ogni gene rappresenta un percorso formativo, quindi non avrebbe senso utilizzare i 
+    Ricordiamo che ogni gene rappresenta uno stato che ha come parametro un percorso formativo, quindi, non avrebbe senso utilizzare i 
     seguenti tipi di mutazione: Swap, Scramble e Inversion poiche' gli individui mutati saranno gli 
-    stessi individui di prima solo che avranno gli indici dei percorsi formativi cambiati di posto.\\
+    stessi individui di prima solo che avranno gli stessi geni cambiati di posto.\\
     Quindi, prendiamo in considerazione la seguente mutazione: Random resetting poiche' un gene sarà 
-    mutato con l'indice di un percorso formativo diverso.
+    mutato in un altro gene diverso.
     
     % Sezione 2.10
     \subsection{Elitismo}

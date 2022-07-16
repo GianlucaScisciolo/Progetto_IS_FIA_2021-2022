@@ -5,36 +5,72 @@ import java.util.Collections;
 import java.util.Random;
 
 
-
+/**
+ * 
+ * @author GIANLUCA
+ * 
+ * Classe che definisce un individuo
+ *
+ */
 public class Individuo {
 	
 	private ArrayList<Stato> codifica;
 	
+	/**
+	 * Costruttore vuoto
+	 */
 	public Individuo() {
 		
 	}
 	
+	/**
+	 * Costruttore che prende come parametro una codifica
+	 * 
+	 * @param codifica: codifica (DNA) dell'individuo
+	 */
 	public Individuo(ArrayList<Stato> codifica) {
 		this.codifica = codifica;
 	}
 	
+	/**
+	 * Metodo che restituisce la codifica dell'individuo
+	 * @return la codifica dell'individuo
+	 */
 	public ArrayList<Stato> getCodifica() {
 		return this.codifica;
 	}
-
+	
+	/**
+	 * Metodo che modifica la modifica la codifica dell'individuo
+	 * @param codifica: nuova codifica
+	 */
 	public void setCodifica(ArrayList<Stato> codifica) {
 		this.codifica = codifica;
 	}
 	
+	/**
+	 * Metodo che ritorna il gene i-esimo dell'individuo
+	 * @param i: posizione del gene 
+	 * @return il gene i-esimo
+	 */
 	public Stato getGene(int i) {
 		return codifica.get(i);
 	}
 	
+	/**
+	 * Metodo che modifica il gene i-esimo
+	 * @param i: posizione del gene da modificare
+	 * @param gene: nuovo gene
+	 */
 	public void setGene(int i, Stato gene) {
 		this.codifica.set(i, gene);
 	}
 	
 	
+	/**
+	 * Metodo che ritorna la lunghezza della codifica (il numero totale di geni dell'individuo)
+	 * @return lunghezza della codifica
+	 */
 	public int size() {
 		return this.getCodifica().size();
 	}
@@ -57,6 +93,9 @@ public class Individuo {
 	}
 	*/
 	
+	/**
+	 * Metodo che elimina i percorsi duplicati tramite il nome
+	 */
 	public void deletePercorsiDuplicatiByNome () {
 		
 		ArrayList<Stato> codifica = this.getCodifica();
@@ -84,8 +123,11 @@ public class Individuo {
 		
 	}
 	
+	/**
+	 * Questo metodo ordina i primi numeroGeniDaOrdinare geni da ordinare
+	 * @param numeroGeniDaOrdinare: numero di geni da ordinare
+	 */
 	public void sortByGiornoAndOrario (int numeroGeniDaOrdinare) {
-		
 		
 		ArrayList<Stato> stati = new ArrayList<>();
 		for (int i = 0; i < numeroGeniDaOrdinare; i++) {

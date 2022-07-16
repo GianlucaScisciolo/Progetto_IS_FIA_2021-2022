@@ -14,14 +14,16 @@
 %>
 
 <%
+	// prendiamo come esempio lo studente con id = 3
 	int idStudente = 3;
 	StudenteDao studenteDao = new StudenteDao();
+	// quindi, ci ricaviamo dal DB lo studente con id = 3
 	StudenteEntity studente = (StudenteEntity) studenteDao.doRetrieveByKey(idStudente);
 	session.setAttribute("studente", studente);
 	
 	PianoFormativoPersonalizzatoDao pianoFormativoPersonalizzatoDao = new PianoFormativoPersonalizzatoDao();
+	// ci ricaviamo gli interessi dello studente
 	ArrayList<String> interessi = pianoFormativoPersonalizzatoDao.doRetrieveInteressiStudente(idStudente);
-	
 %>
 
 <!DOCTYPE html>
@@ -35,17 +37,10 @@
 	</head>
 	
 	<body>
-
-<!--  
-		<form>
-			<label>
-				Inserisci il costo massimo che vuoi spendere (Facoltativo): 
-				<input type="number" id="costoMax" name="costoMax" step="0.01"> 
-				&euro;
-			</label>
-		</form>
--->		
 		
+<%
+		// Visualizziamo gli interessi dello studente
+%>
 		<h2>Interessi inseriti nel profilo</h2>
 		<p>
 <%
@@ -58,6 +53,10 @@
 			<br>
 		</p>
 		
+<%
+		// Premendo sul bottone "Ottieni un piano formativo personalizzato" 
+		// visualizziamo un piano formativo personalizzato.
+%>
 		<button id="ottieniPercorsoFormativoButton" class="ottieniPercorsoFormativoButton">
 	    	Ottieni un piano formativo personalizzato
 		</button>

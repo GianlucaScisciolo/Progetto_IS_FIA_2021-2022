@@ -42,7 +42,7 @@ public class PianoFormativoPersonalizzatoProblem extends AbstractIntegerProblem 
 		
 		this.punteggiIndividuoMigliore = new ArrayList<>();
 		for (int i = 0; i < this.geniSize + 1; i++) {
-			punteggiIndividuoMigliore.add(0);
+			punteggiIndividuoMigliore.add(0);/*Da controllare*/
 		}
 	}
 	

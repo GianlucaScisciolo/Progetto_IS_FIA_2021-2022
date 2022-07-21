@@ -301,7 +301,7 @@
     Scegliamo la k-way Tournament Selection.\\
     
     % Sezione 2.8
-    \subsection{Crossover (Sono arrivato qui)}
+    \subsection{Crossover}
     \label{Crossover}
     Single-point Crossover:\\
     Punto di taglio  = numero casuale tra 1 e 9.\\
@@ -436,21 +436,23 @@
     % Sezione 2.10
     \subsection{Elitismo}
     \label{elitismoSubsection}
-    Poiche' gli individui di elite saranno il 10\% della popolazione allora l'elitismo lo utilizzeremo 
-    solo quando il numero della popolazione e' maggiore o uguale a 10. Gli individui di elite non 
-    subiranno ne la selezione, ne il crossover e ne la mutazione.
-	
+    Poiché gli individui d'elite non dovrebbero superare il 10\% della popolazione totale 
+    allora l'elitismo lo utilizzeremo solo se il numero della popolazione totale è maggiore o uguale a 10, questo 
+    perché il 10\% di 10 è uguale ad 1.
+    Gli studenti di elite non subiranno ne la selezione, ne il crossover e ne la mutazione 
+    e saranno sempre massimo 2 individui.
+    
     % Sezione 2.11
     \subsection{Preserviamo l'ammissibilita'}
     \label{PreserviamoAmmissibilitaSubsection}
     Con il crossover e la mutazione si potrebbe correre il rischio che nelle nuove generazioni 
-    potrebbero esistere degli individui non ammissibili. Nel nostro caso questo non accade perche':
+    potrebbero esistere degli individui non ammissibili. Nel nostro caso questo non puo' accadere perche':
     \begin{enumerate}
       \item Nel crossover abbiamo 2 genitori che formano 2 figli contenenti i geni 
-      al 50\% di uno e 50\% di un altro, poiche' tutti i geni sono indici di percorsi formativi 
-      presenti allora non avremo mai percorsi formativi inesistenti.
-      \item Nella mutazione: mutiamo un gene con un altro valore, questo nuovo valore sarà ancora un 
-      percorso formativo valido poiche' sara' un indice esistente.
+      al 50\% del genitore 1 e al 50\% del genitore 2, poiche' ogni gene non è altro che uno stato che ha come attributo un percorso formativo esistente 
+      allora non avremo mai dei percorsi formativi inesistenti.
+      \item Nella mutazione: mutiamo un gene con un altro stato, questo nuovo stato sarà ancora un 
+      stato valido poiche' e' presente nel vettore spazio stati e quindi di conseguenza abbiamo ancora un percorso formativo valido.
     \end{enumerate}
     
     % Sezione 2.12
@@ -465,17 +467,19 @@
     \end{itemize}
     Quindi aggiorniamo la vecchia popolazione con la nuova popolazione salvandoci pero' l'individuo 
     migliore della vecchia generazione se e solo se quest'ultimo e' migliore dell'ultimo individuo 
-    migliore.
+    migliore.\\
+    N.B.: l'individuo migliore non farà parte della nuova generazione.
     
     % Sezione 2.13
     \subsection{Ottengo il miglior individuo}
     \label{ottengoMigliorIndividuoSubsection}
     Quando usciamo dal loop ritorneremo il miglior individuo, ovvero, uno dei seguenti individui:
-    \begin{itemize}
-      \item Nel caso in cui raggiungo l'ottimo: l'individuo migliore dell'ultima generazione ottenuta.
-      \item Nel caso in cui non raggiungo l'ottimo (il tempo scade): l'individuo migliore trovato dalla 
-      prima all'ultima generazione ottenuta.
-    \end{itemize}
+    \begin{enumerate}
+      \item Nel caso in cui raggiungo l'ottimo: prendiamo l'individuo migliore dell'ultima generazione ottenuta che verrà poi confrontato 
+      con l'individuo che ci siamo salvati ad ogni generazione. Ritorniamo il migliore tra i 2;
+      \item Nel caso in cui non raggiungo l'ottimo (il tempo scade):  ritorniamo l'individuo migliore trovato dalla 
+      prima all'ultima generazione ottenuta (quello che ci siamo salvati ad ogni generazione).
+    \end{enumerate}
     
     % Sezione 2.14
     \subsection{Riformulazione dei passi dell'algoritmo genetico}

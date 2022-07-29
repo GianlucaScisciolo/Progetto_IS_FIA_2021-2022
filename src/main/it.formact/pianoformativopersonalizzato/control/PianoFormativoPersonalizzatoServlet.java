@@ -23,7 +23,7 @@ import model.entity.CategoriaEntity;
 import model.entity.PreferenzaStudenteEntity;
 import model.entity.StudenteEntity;
 import modelfia.dao.PianoFormativoPersonalizzatoDao;
-import pianoformativopersonalizzato.geneticalgorithm.Individuo;
+import pianoformativopersonalizzato.geneticalgorithm.Soluzione;
 import pianoformativopersonalizzato.geneticalgorithm.PianoFormativoPersonalizzatoGA;
 import pianoformativopersonalizzato.geneticalgorithm.Stato;
 import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoService;
@@ -52,18 +52,27 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Otteniamo la sessione corrente associata alla request
 		HttpSession session = request.getSession(true);
-	    response.setContentType("text.html");
-	    PrintWriter out = response.getWriter();
+		// Impostiamo il tipo di contenuto della risposta inviata al client
+		response.setContentType("text.html");
 	    
+		// ottengo il tipo di azione
 	    String action = request.getParameter("action");
 	    
 	    try {
+	    	// se action != null
 	    	if (action != null) {
+	    		// se action = "ottieniPianoFormativoPersonalizzato"
 	    		if (action.equalsIgnoreCase("ottieniPianoFormativoPersonalizzato")) {
-	    			PianoFormativoPersonalizzatoService pianoFormativoPersonalizzatoService = new PianoFormativoPersonalizzatoService();
-	    			Individuo individuo = pianoFormativoPersonalizzatoService.ottieniPianoFormativoPersonalizzato(request);
-	    			session.setAttribute("individuo", individuo);
+	    			// intanzio un oggetto di tipo PianoFormativoPersonalizzatoService
+	    			PianoFormativoPersonalizzatoService pianoFormativoPersonalizzatoService 
+	    					= new PianoFormativoPersonalizzatoService();
+	    			// ottengo la soluzione
+	    			Soluzione soluzione = pianoFormativoPersonalizzatoService.ottieniPianoFormativoPersonalizzato(request);
+	    			// setto l'attributo "soluzione" della sessione con il valore soluzione
+	    			session.setAttribute("soluzione", soluzione);
+	    			// stato = 200 (stato ok)
 	    			response.setStatus(200);
 	    		}
 	    	}
@@ -71,6 +80,7 @@ public class PianoFormativoPersonalizzatoServlet extends HttpServlet {
 	    catch (SQLException e) {
 	    	System.out.println("Error:" + e.getMessage());
 	    }
+	    
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 }

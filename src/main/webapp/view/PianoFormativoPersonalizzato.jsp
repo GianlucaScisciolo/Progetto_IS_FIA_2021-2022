@@ -3,13 +3,15 @@
 	contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     
-    import="pianoformativopersonalizzato.geneticalgorithm.Individuo"
+    import="pianoformativopersonalizzato.geneticalgorithm.Soluzione"
     import="pianoformativopersonalizzato.geneticalgorithm.Stato"
     import="model.entity.PercorsoFormativoEntity"
 %>
 
 <%
-	Individuo individuo = (Individuo) session.getAttribute("individuo");
+
+
+	Soluzione soluzione = (Soluzione) session.getAttribute("soluzione");
 %>
 
 <!doctype html>
@@ -39,23 +41,23 @@
 				<span class="row border border-primary">
 <%
 					int i = 0;
-					while(i < individuo.size()) {
+					while(i < soluzione.getSize()) {
 						if (i == 4) {
 							break;
 						}
 						
-						Stato gene = individuo.getGene(i);
+						Stato stato = soluzione.getStato(i);
 %>
 						<span class="col-sm border border-primary">
-				    		<%//= gene.getPercorsoFormativo().getId_formatore() %><br>
+				    		<%//= stato.getPercorsoFormativo().getId_formatore() %><br>
 				    		Nome<br>
 				    		Cognome<br><br>
-				    		<%= gene.getPercorsoFormativo().getNome() %><br><br>
-							Descrizione: <%= gene.getPercorsoFormativo().getDescrizione() %><br><br>
-							giorno: <%= gene.getGiorno() %><br>
-							Ore: <%= gene.getOrario() %><br><br>
- 							<%= gene.getPercorsoFormativo().getNum_lezioni() %> lezioni<br>
-							Costo: <%= gene.getPercorsoFormativo().getCosto() %> &#x20AC;<br><br>
+				    		<%= stato.getPercorsoFormativo().getNome() %><br><br>
+							Descrizione: <%= stato.getPercorsoFormativo().getDescrizione() %><br><br>
+							giorno: <%= stato.getGiorno() %><br>
+							Ore: <%= stato.getOrario() %><br><br>
+ 							<%= stato.getPercorsoFormativo().getNum_lezioni() %> lezioni<br>
+							Costo: <%= stato.getPercorsoFormativo().getCosto() %> &#x20AC;<br><br>
 							<button id="infoButton">Info</button>
 							<button id="iscrivitiButton">Iscriviti</button>
 						</span>
@@ -71,8 +73,8 @@
   				<span class="row border border-primary">
 <%
 					int j = 0;
-					while(i < individuo.size()) {
-						Stato gene = individuo.getGene(i);
+					while(i < soluzione.getSize()) {
+						Stato stato = soluzione.getStato(i);
 						if (j == 3) {
 %>
 							</span>
@@ -82,10 +84,10 @@
 %>
 						<span class="col-sm border border-primary">
 				    		<%//= gene.getPercorsoFormativo().getId_formatore() %><br>
-				    		<%= gene.getPercorsoFormativo().getNome() %><br><br>
+				    		<%= stato.getPercorsoFormativo().getNome() %><br><br>
 				    		Nome<br>
 				    		Cognome<br><br>
-				    		Costo: <%= gene.getPercorsoFormativo().getCosto() %> &#x20AC;<br>
+				    		Costo: <%= stato.getPercorsoFormativo().getCosto() %> &#x20AC;<br>
 						</span>
 <%
 						j++;

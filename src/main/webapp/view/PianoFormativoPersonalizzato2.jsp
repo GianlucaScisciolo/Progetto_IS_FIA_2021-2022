@@ -3,14 +3,13 @@
 	contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     
-    import="pianoformativopersonalizzato.geneticalgorithm.Individuo"
+    import="pianoformativopersonalizzato.geneticalgorithm.Soluzione"
     import="pianoformativopersonalizzato.geneticalgorithm.Stato"
     import="model.entity.PercorsoFormativoEntity"
 %>
 <%
 
-
-	Individuo pianoFormativoPersonalizzato = (Individuo) session.getAttribute("pianoFormativoPersonalizzato");
+	Soluzione pianoFormativoPersonalizzato = (Soluzione) session.getAttribute("pianoFormativoPersonalizzato");
 %>
 
 <!DOCTYPE html>
@@ -39,20 +38,20 @@
 			</thead>
 			<tbody>
 <%
-				for (int i = 0; i < pianoFormativoPersonalizzato.size(); i++) {
-					Stato gene = pianoFormativoPersonalizzato.getGene(i);
+				for (int i = 0; i < pianoFormativoPersonalizzato.getSize(); i++) {
+					Stato stato = pianoFormativoPersonalizzato.getStato(i);
 %>
 					<tr>
-					    <td><%= gene.getPercorsoFormativo().getId() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getId_formatore() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getNome() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getCategoria() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getDescrizione() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getIndice_contenuti() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getNum_lezioni() %></td>
-				    	<td><%= gene.getPercorsoFormativo().getCosto() %></td>
-				    	<td><%= gene.getGiorno() %></td>
-				    	<td><%= gene.getOrario() %></td>
+					    <td><%= stato.getPercorsoFormativo().getId() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getId_formatore() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getNome() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getCategoria() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getDescrizione() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getIndice_contenuti() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getNum_lezioni() %></td>
+				    	<td><%= stato.getPercorsoFormativo().getCosto() %></td>
+				    	<td><%= stato.getGiorno() %></td>
+				    	<td><%= stato.getOrario() %></td>
 					</tr>
 <%
 				}

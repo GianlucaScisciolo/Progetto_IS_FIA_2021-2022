@@ -59,7 +59,7 @@
 %>
 		<button id="ottieniPercorsoFormativoButton" class="ottieniPercorsoFormativoButton">
 	    	Ottieni un piano formativo personalizzato
-		</button>
+		</button> Tempo massimo impiegato: 7 secondi.
 		
 	</body>
 </html>

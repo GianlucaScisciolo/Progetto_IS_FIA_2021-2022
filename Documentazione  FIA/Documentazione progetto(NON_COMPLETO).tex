@@ -164,19 +164,30 @@
       i vari percorsi formativi presenti negli stati della soluzione migliore trovata.
      
      % Sezione 2.3
+     \subsection{Classe PercorsoFormativoEntity}
+       \label{classePercorsoFormativoEntitySubsection}
+       Ora, vediamo più nel dettaglio come è fatta la classe PercorsoFormativoEntity:\\
+       \begin{figure}[h!]
+         \centering
+         \caption{Classe PercorsoFormativoEntity}
+         \includegraphics[scale=0.5]{classePercorsoFormativoEntity.jpg}
+         \label{classePercorsoFormativoEntity}
+       \end{figure}\\
+      
+    % Sezione 2.4
      \subsection{Classe Stato}
-       \label{passiDellAlgoritmoGeneticoSubsection}
+       \label{classeStatoSubsection}
        Ora, vediamo più nel dettaglio come è fatta la classe Stato:\\
        \begin{figure}[h!]
          \centering
          \caption{Classe Stato}
          \includegraphics[scale=0.5]{classeStato.jpg}
-         \label{passiAlgoritmoGenetico}
+         \label{classeStato}
        \end{figure}\\
       
       \newpage
       
-    % Sezione 2.4
+    % Sezione 2.5
     \subsection{Passi dell'algoritmo genetico}
       \label{passiDellAlgoritmoGeneticoSubsection}
       Questi saranno i passi dell'algoritmo genetico:
@@ -187,7 +198,7 @@
         \label{passiAlgoritmoGenetico}
       \end{figure}\\
             
-    % Sezione 2.5
+    % Sezione 2.6
     \subsection{Inizializzo la popolazione}
       \label{inizializzoLaPopolazioneSubsection}
       Sia N = $\lvert$vettore spazio stati$\rvert$, la nostra popolazione sara' composta da un numero M di individui tale che:\\ 
@@ -205,7 +216,7 @@
       
       \newpage
       
-    % Sezione 2.6
+    % Sezione 2.7
     \subsection{Valuto la popolazione (Da vedere)}
       \label{valutoLaPopolazioneSubsection}
       
@@ -279,7 +290,7 @@
       
       \newpage
       
-    % Sezione 2.7
+    % Sezione 2.8
     \subsection{Mi fermo? -- Criteri di arresto}
     \label{MiFermo?--CriteriDiArrestoSubsection}
     Criteri di arresto utilizzati:
@@ -288,7 +299,7 @@
       \item Tempo di Esecuzione: dopo 5 secondi l’algoritmo termina.
     \end{enumerate}
     
-    % Sezione 2.8
+    % Sezione 2.9
     \subsection{Selezione}
     \label{Selezione}
     Esistono vari tipi di selezione. Andiamo ad analizzarli:
@@ -323,7 +334,7 @@
     Rank selection: troppo lenta.\\
     Scegliamo la k-way Tournament Selection.\\
     
-    % Sezione 2.9
+    % Sezione 2.10
     \subsection{Crossover}
     \label{Crossover}
     Single-point Crossover:\\
@@ -379,7 +390,7 @@
     Per levarci questo problema, scegliamo l’Uniform Crossover. In modo che non facciamo nessun taglio 
     e c’è più diversità.\\
     
-    % Sezione 2.10
+    % Sezione 2.11
     \subsection{Mutazione}
     \label{Mutazione}
     Random resetting:\\
@@ -459,14 +470,14 @@
     poiche' un gene sara' mutato in un altro gene diverso.\\
     In particolare, muteremo massimo 4 geni in modo tale da ottenere una maggiore diversità tra i vari individui della popolazione.
     
-    % Sezione 2.11
+    % Sezione 2.12
     \subsection{Elitismo}
     \label{elitismoSubsection}
     Poiché gli individui d'elite non dovrebbero superare il 10\% della popolazione totale allora l'elitismo lo utilizzeremo solo se il numero della 
     popolazione totale è maggiore o uguale a 10, questo perché, il 10\% di 10 è uguale ad 1.
     Gli individui di elite non subiranno ne la selezione, ne il crossover e ne la mutazione e saranno sempre massimo 2 individui.
     
-    % Sezione 2.12
+    % Sezione 2.13
     \subsection{Preserviamo l'ammissibilita'}
     \label{PreserviamoAmmissibilitaSubsection}
     Con il crossover e la mutazione si potrebbe correre il rischio che nelle nuove generazioni potrebbero esistere degli individui non ammissibili. 
@@ -479,7 +490,7 @@
       poiché rappresentano le posizioni di 4 stati nel vettore spazio stati e quindi, di conseguenza, abbiamo ancora 4 percorsi formativi validi.
     \end{enumerate}
     
-    % Sezione 2.13
+    % Sezione 2.14
     \subsection{Aggiorniamo la popolazione}
     \label{aggiorniamoPopolazioneSubsection}
     La nuova popolazione sara' costituita da M individui, ovvero:
@@ -493,7 +504,7 @@
     migliore.\\
     N.B.: l'individuo migliore non farà parte della nuova generazione.
     
-    % Sezione 2.14
+    % Sezione 2.15
     \subsection{Ottengo il miglior individuo}
     \label{ottengoMigliorIndividuoSubsection}
     Quando usciamo dal loop ritorniamo il miglior individuo, ovvero, uno dei seguenti individui:
@@ -503,7 +514,7 @@
       (e' anche l'individuo migliore di tutte le generazioni grazie all'elitismo)
     \end{itemize}
     
-    % Sezione 2.15
+    % Sezione 2.16
     \subsection{Riformulazione dei passi dell'algoritmo genetico}
     \label{riformulazioneDeiPassiAlgoritmoGeneticoSubsection}
     Alla luce della progettazione fatta, possiamo riformulare il tutto con i seguenti passi 

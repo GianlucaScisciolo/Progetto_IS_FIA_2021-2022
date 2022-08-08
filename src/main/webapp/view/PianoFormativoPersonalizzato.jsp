@@ -11,7 +11,7 @@
 <%
 
 
-	Soluzione soluzione = (Soluzione) session.getAttribute("soluzione");
+	Soluzione soluzione = (Soluzione) request.getSession().getAttribute("soluzione");
 %>
 
 <!doctype html>

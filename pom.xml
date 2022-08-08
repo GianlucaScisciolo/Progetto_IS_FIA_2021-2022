@@ -1,12 +1,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>formAct_FIA</groupId>
-  	<artifactId>formAct_FIA</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-  	<packaging>war</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>formAct_FIA</groupId>
+  <artifactId>formAct_FIA</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   
-  	<build>
+  <dependencies>
+    <dependency>
+      <groupId>org.uma.jmetal</groupId>
+      <artifactId>jmetal-core</artifactId>
+      <version>5.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.uma.jmetal</groupId>
+      <artifactId>jmetal-algorithm</artifactId>
+      <version>5.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.uma.jmetal</groupId>
+      <artifactId>jmetal-example</artifactId>
+      <version>5.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>4.4.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
     	<sourceDirectory>src/main/it.formact</sourceDirectory>
     	<plugins>
       		<plugin>
@@ -34,58 +64,4 @@
       		-->
     	</plugins>
   	</build>
-  	
-    <dependencies>
-  		<dependency>
-      		<groupId>org.uma.jmetal</groupId>
-      		<artifactId>jmetal-core</artifactId>
-      		<version>5.11</version>
-    	</dependency>
-    	<dependency>
-      		<groupId>org.uma.jmetal</groupId>
-      		<artifactId>jmetal-algorithm</artifactId>
-      		<version>5.11</version>
-    	</dependency>
-    	<dependency>
-      		<groupId>org.uma.jmetal</groupId>
-      		<artifactId>jmetal-example</artifactId>
-      		<version>5.11</version>
-    	</dependency>
-    	
-        <!--
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
-            <scope>test</scope>
-        </dependency>
-        -->
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-<dependency>
-    <groupId>org.mockito</groupId>
-    <artifactId>mockito-core</artifactId>
-    <version>4.4.0</version>
-    <scope>test</scope>
-</dependency>
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-        
-        
-        <!-- https://mvnrepository.com/artifact/jboss/jboss-j2ee -->
-        <!--
-<dependency>
-    <groupId>jboss</groupId>
-    <artifactId>jboss-j2ee</artifactId>
-    <version>4.2.2.GA</version>
-    <scope>provided</scope>
-</dependency>
--->
-    </dependencies>
-    
 </project>

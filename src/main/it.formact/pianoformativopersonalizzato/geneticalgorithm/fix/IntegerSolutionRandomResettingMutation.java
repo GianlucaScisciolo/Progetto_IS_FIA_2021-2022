@@ -83,6 +83,8 @@ public class IntegerSolutionRandomResettingMutation implements MutationOperator<
 		
 		// se il valore casuale ottenuto dal randomGenerator <= mutationProbability 
 		// allora possiamo eseguire la mutazione:
+		
+		
 		if (randomGenerator.getRandomValue() <= mutationProbability) {
 			// otteniamo il limite superiore di solutions
 			Bounds<Integer> bounds = solution.getBounds(0);
@@ -91,9 +93,9 @@ public class IntegerSolutionRandomResettingMutation implements MutationOperator<
 			// muto 4 geni casuali dell'individuo
 			for (int i = 0; i < 4; i++) {
 				// indice gene casuale = numero casuale compreso tra 0 |solutions| - 1
-				Integer randomIndexGene = randomNumber.nextInt(solution.variables().size());
+				Integer randomIndexGene = JMetalRandom.getInstance().nextInt(0, solution.variables().size() - 1);
 				// indice stato casuale = numero casuale compreso tra 0 e il limite superiore - 1
-				Integer randomIndexStato = randomNumber.nextInt(upperBound);
+				Integer randomIndexStato = JMetalRandom.getInstance().nextInt(0, upperBound - 1);
 				// modifico il gene nella posizione casuale randomIndexGene con l'indice casuale di uno stato
 				solution.variables().set(randomIndexGene, randomIndexStato);		        	
 			}

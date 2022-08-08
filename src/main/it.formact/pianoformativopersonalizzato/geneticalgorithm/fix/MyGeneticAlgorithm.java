@@ -91,38 +91,37 @@ public class MyGeneticAlgorithm<S extends Solution<?>> extends GenerationalGenet
 	
 	@Override 
 	protected List<S> replacement(List<S> population, List<S> offspringPopulation) {
-		System.out.println("Popolazione numero " + this.numberGeneration + ":");
-		for (int i = 0; i < population.size(); i++) {
-			System.out.print(population.get(i));
-		}
-		System.out.println();
-		
+
+		System.out.println("Informazione sulla generazione:\n" + infoPopulation(population));
 		// incrementiamo il numero della generazione
 		this.numberGeneration++;
 		
-		int populationSize = population.size();
-		int offspringPopulationSize = 0;
 		
-		if (populationSize >= 10) {
-			
-			offspringPopulationSize = (populationSize < 20) ? 1 : 2;
-			
-			Collections.sort(population, this.comparator);
-			this.bestIndividual = population.get(0);
-			for (int i = 0; i < offspringPopulationSize; i++) {
-				offspringPopulation.add(population.get(i));
-			}
-			Collections.sort(offspringPopulation, comparator);
-			for (int i = 0; i < offspringPopulationSize; i++) {
-				offspringPopulation.remove(offspringPopulation.size() - 1);
-			}
+        Collections.sort(population, comparator);
+        // Se |population| >= 10 allora posso ottenere gli individui d'elite
+        if(population.size() >= 10) {
+            offspringPopulation.add(population.get(0));
+            offspringPopulation.add(population.get(1));
+            Collections.sort(offspringPopulation, comparator) ;
+            offspringPopulation.remove(offspringPopulation.size() - 1);
+            offspringPopulation.remove(offspringPopulation.size() - 1);
+        }
+        else {
+        	offspringPopulation = population;
+        }
+        // Miglior individuo della generazione
+        bestIndividual = population.get(0);
+        
+        return offspringPopulation;
+    }
+
+	private String infoPopulation(List<S> population) {
+		String infoPopulation = "";
+		infoPopulation += "Popolazione numero " + this.numberGeneration + ":\n";
+		for (int i = 0; i < population.size(); i++) {
+			infoPopulation += population.get(i) + "\n";
 		}
-		
-		else if (populationSize < 10 && populationSize > 0) {
-			Collections.sort(population, this.comparator);
-			this.bestIndividual = population.get(0);
-		}
-		return offspringPopulation;
+		return infoPopulation;
 	}
 }
 

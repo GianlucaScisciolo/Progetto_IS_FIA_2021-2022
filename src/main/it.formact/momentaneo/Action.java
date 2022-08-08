@@ -5,7 +5,7 @@ public class Action {
 	String page;
 	boolean redirect;
 	boolean error;
-	/**
+	/** 
 	 * Costruttore
 	 * @param page, view a cui indirizzare la richiesta
 	 * @param redirect, indica se eseguire il redirect oppure il forward

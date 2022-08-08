@@ -10,7 +10,7 @@ import pianoformativopersonalizzato.geneticalgorithm.Stato;
 /**
  * 
  * Classe che rappresenta uno stato
- * 
+ *  
  * @author GianlucaScisciolo
  *
  */

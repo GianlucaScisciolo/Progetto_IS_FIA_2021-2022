@@ -11,7 +11,7 @@ import pianoformativopersonalizzato.service.PianoFormativoPersonalizzatoService;
 
 @WebServlet("/PianoFormativoPersonalizzatoServlet")
 public class PianoFormativoPersonalizzatoServlet extends AbstractController {
-	
+	 
 	@Override
 	protected Map<String, Service> initServices() {
 		java.util.Map<String, Service> m = new java.util.HashMap<String, Service>();

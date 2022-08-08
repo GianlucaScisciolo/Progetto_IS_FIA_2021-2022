@@ -6,7 +6,7 @@
     import="pianoformativopersonalizzato.geneticalgorithm.Soluzione"
     import="pianoformativopersonalizzato.geneticalgorithm.Stato"
     import="model.entity.PercorsoFormativoEntity"
-%>
+%> 
 
 <%
 

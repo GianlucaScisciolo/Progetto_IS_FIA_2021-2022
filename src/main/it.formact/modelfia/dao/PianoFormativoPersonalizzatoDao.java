@@ -22,7 +22,7 @@ import pianoformativopersonalizzato.geneticalgorithm.Stato;
 
 /**
  * 
- * @author GianlucaScisciolo
+ * @author GianlucaScisciolo 
  * 
  * Questa classe si occupa di interrogare il DB per la parte del modulo intelligente.
  *

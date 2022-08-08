@@ -3,7 +3,7 @@ package pianoformativopersonalizzato.geneticalgorithm.fix;
 import java.util.Collections;
 
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
-
+ 
 public class Prova {
 	
 	public static void main (String [] args) {

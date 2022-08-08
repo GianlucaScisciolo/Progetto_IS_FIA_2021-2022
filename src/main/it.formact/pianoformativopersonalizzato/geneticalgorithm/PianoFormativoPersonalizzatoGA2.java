@@ -22,7 +22,7 @@ import pianoformativopersonalizzato.geneticalgorithm.fix.MyGeneticAlgorithm;
 /**
  * 
  * Classe che definisce il PianoFormativoPersonalizzatoGA (algoritmo genetico piano formativo personalizzato)
- * 
+ *  
  * @author GianlucaScisciolo
  *
  */

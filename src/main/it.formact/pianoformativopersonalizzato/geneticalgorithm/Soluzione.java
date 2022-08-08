@@ -8,7 +8,7 @@ import pianoformativopersonalizzato.geneticalgorithm.Stato;
 /**
  * 
  * Classe che rappresenta una soluzione
- * 
+ *  
  * @author GianlucaScisciolo
  *
  */

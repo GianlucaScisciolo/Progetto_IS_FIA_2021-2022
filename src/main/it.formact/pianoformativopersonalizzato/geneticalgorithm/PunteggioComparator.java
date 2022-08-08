@@ -7,7 +7,7 @@ import pianoformativopersonalizzato.geneticalgorithm.Stato;
 /**
  * 
  * Classe che si occupa della comparazione dei punteggi di 2 stati
- * 
+ *  
  * @author GianlucaScisciolo
  *
  */

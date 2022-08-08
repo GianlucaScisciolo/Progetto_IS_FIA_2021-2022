@@ -29,7 +29,7 @@ public class PianoFormativoPersonalizzatoService implements Service {
 	
 	Action successPage = new Action("/formAct/view/PianoFormativoPersonalizzato.jsp", true, true);
 	Action errorPage = new Action("/formAct/view/ErrorPage.jsp", true, true);
-	
+	 
 	public PianoFormativoPersonalizzatoService() throws ParseException {
 		
 	}

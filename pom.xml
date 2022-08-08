@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   
   <dependencies>
-    <dependency>
+    <dependency> 
       <groupId>org.uma.jmetal</groupId>
       <artifactId>jmetal-core</artifactId>
       <version>5.11</version>

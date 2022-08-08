@@ -10,7 +10,7 @@ import org.uma.jmetal.solution.integersolution.IntegerSolution;
 /**
  * 
  * Classe che definisce il problema del piano formativo personalizzato
- * 
+ *  
  * @author GianlucaScisciolo
  *
  */

@@ -8,7 +8,7 @@
 	import="modelfia.dao.PianoFormativoPersonalizzatoDao"
 	import="model.entity.StudenteEntity"
 	import="model.entity.InteresseEntity"
-%>
+%> 
 
 <%
   // prendiamo come esempio lo studente con id = 3

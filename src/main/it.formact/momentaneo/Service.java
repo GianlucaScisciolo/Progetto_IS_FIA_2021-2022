@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * Rappresenta un servizio di gestione per un determinato controller
  *
  */
-public interface Service {
+public interface Service {  
 	
 	/**
 	 * Processa la request

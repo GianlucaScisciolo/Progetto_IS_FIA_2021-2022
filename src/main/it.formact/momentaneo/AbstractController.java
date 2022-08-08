@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Rappresenta il controller di base
  *
  */
-public abstract class AbstractController extends HttpServlet{
+public abstract class AbstractController extends HttpServlet{ 
 
 	private Map<String, Service> services;
 	/**

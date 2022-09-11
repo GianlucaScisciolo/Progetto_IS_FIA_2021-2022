@@ -24,6 +24,7 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/it.formact"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
                                                                                 
         
         

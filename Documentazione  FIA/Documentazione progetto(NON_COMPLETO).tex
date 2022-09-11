@@ -10,6 +10,7 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 \usepackage{color}
+\usepackage{url}
 
 \begin{document}
    
@@ -69,7 +70,7 @@
         \begin{itemize}
           \item[$\circ$] un vettore di massimo 10 percorsi formativi mostrati a video:
           \begin{itemize}
-            \item I 4 percorsi formativi con punteggio più alto faranno parte del piano formativo;
+            \item I 4 percorsi formativi con punteggio più alto (diversi tra loro) faranno parte del piano formativo;
             \item I percorsi formativi rimanenti (diversi tra loro e che non fanno parte 
             del piano formativo) faranno parte dei percorsi formativi suggeriti. 
           \end{itemize}
@@ -105,7 +106,7 @@
         \item Complessita' spaziale.
       \end{enumerate}
       Ovviamente, l'utente non vorra' aspettare molto tempo quindi, all'algoritmo gli daremo del tempo 
-      non superiore a 5 secondi + 2 secondi per la visualizzazione del piano formativo. Totale: 7 secondi.
+      non superiore a 4 secondi + il tempo necessario per l'ordinamento e la visualizzazione del piano formativo. Totale: circa 5 secondi.
         
   % Sezione 2
   \section{Progettazione dell'algoritmo genetico}
@@ -141,7 +142,7 @@
       Quindi, ogni individuo non è altro che un vettore di massimo 10 interi che rappresentano gli indici delle posizioni degli stati 
       nel vettore spazio stati e, una volta finita la computazione, trasformiamo l'individuo in una soluzione.\\
       Soluzione: vettore di massimo 10 stati, ovvero, un piano formativo con dei percorsi formativi consigliati.\\ 
-      Perche' massimo 10? perche' vogliamo ritornare un sottoinsieme di 10 percorsi formativi di cui i  4 percorsi formativi con punteggio più alto, 
+      Perche' massimo 10? perche' vogliamo ritornare un sottoinsieme di 10 percorsi formativi di cui i  primi 4 percorsi formativi diversi tra loro e con punteggio più alto, 
       ordinati in base al giorno e all'orario, faranno parte del piano formativo e i percorsi formativi rimanenti diversi tra loro e non presenti 
       nel piano formativo faranno parte dei consigliati.\\
       Esempio soluzioni:
@@ -152,8 +153,8 @@
         \includegraphics[scale=0.5]{esempiSoluzioni.jpg}
         \label{esempiSoluzioni}
       \end{figure}\\
-      
-      Ora, considerando il vettore spazio stati ed N il numero di percorsi formativi presenti nel vettore spazio stati:\\
+      \newpage
+     Ora, considerando il vettore spazio stati ed N il numero di percorsi formativi presenti nel vettore spazio stati:\\
       \begin{itemize}
         \item se $ N = 0 $ allora ritornero' una soluzione vuota senza eseguire l'algoritmo;
         \item se $ 0 < N \leq 10 $ allora ritornero' una soluzione vuota con tutti i percorsi formativi presenti nel vettore spazio stati 
@@ -217,75 +218,30 @@
       \newpage
       
     % Sezione 2.7
-    \subsection{Valuto la popolazione (Da vedere)}
+    \subsection{Valuto la popolazione}
       \label{valutoLaPopolazioneSubsection}
       
       Come possiamo valutare la popolazione?\\
-      Abbiamo bisogno di una funzione obiettivo (funzioneObiettivo(codifica)).\\
-      Dalla funzione obiettivo ci ricaviamo una funzione di valutazione (funzioneValutazione(codifica)) che sara':
-      \begin{itemize}
-        \item uguale alla funzione obiettivo nel caso in cui quest'ultima non richiede molte risorse, 
-        sia accessibile, non e' complessa e non e' impossibile da realizzare.
-        \item un approssimazione della funzione obiettivo nel caso in cui il punto precedente non e' 
-        vero. 
-      \end{itemize}
-      Dopo di che, una volta applicata la funzione di valutazione, ad ogni individuo gli sara' dato un valore di 
+      Abbiamo bisogno di una funzione di valutazione (evaluate(individuo)).\\
+      Una volta applicata la funzione di valutazione, ad ogni individuo gli sara' dato un valore di 
       partenza che con la funzione di fitness (fitness(codifica)) avremo il grado di sopravvivenza di ciascun 
       individuo. La funzione di fitness dipende dall'algoritmo di selezione utilizzato.\\
-      ----------------------------------------
-      \\
-      \textcolor{red}{Funzione obiettivo (funzioneObiettivo(codifica)) considerazioni:}\\
-      poiche' possono esistere 2 o piu' geni con lo stesso valore allora il punteggio sara' dato solo ai 
-      geni con valore diverso, quindi, ci servira' un modo per calcolare il punteggio solo ai nodi 
-      diversi (utilizzeremo una funzione chiamata contains, java la fornisce).\\
-      Le seguenti funzioni possono cambiare (non sono ancora quelle definitive):\\
-      Funzione obiettivo:\\
+      
+      \newpage
       \begin{figure}[h!]
         \centering
-        \caption{funzioneObiettivo(codifica) -- pseudocodice:}
-        \includegraphics[scale=0.5]{funzioneObiettivo pseudocodice.jpg}
-        \label{funzioneObiettivoPseudocodice}
+        \caption{Funzione di valutazione -- pseudocodice}
+        \includegraphics[scale=0.5]{Funzione di valutazione - evaluate.png}
+        \label{funzioneDiValutazionePseudocodice}
       \end{figure}
-      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-      
-      
-      getPunteggio(gene):\\
-      con la funzione getPunteggio(gene):\\
-      \begin{enumerate}
-       \item Mi ricavo il percorso formativo.
-       \item Con il percorso formativo ricavato, mi ricavo:
-         \begin{enumerate}
-           \item Il valoreInteresse.
-           \item Il valoreStorico.
-           \item Il valoreCosto
-         \end{enumerate}
-       \item Utilizzero' una delle seguenti funzioni matematiche:
-         \begin{itemize}
-           \item Somma lineare di tutti i parametri:\\
-                 SP = valoreInteresse + valoreStorico + valoreCosto.\\
-                 Soluzione migliore: la soluzione che ha il punteggio:\\
-                 SMP = (15 + 10 + 5) * 7 = 210.           
-           \item Somma lineare di tutti i parametri moltiplicati per una costante c:\\
-                 SP = (valoreInteresse * c) + (valoreStorico * c) + (valoreCosto * c).\\
-                 Soluzione migliore: la soluzione che ha il punteggio:\\
-                 SMP = [(15 * c) + (10 * c) + (5 * c)] * 7 = [(15 + 10 + 5) * c] * 7 = [30 * c] * 7 =
-                 30 * 7 * c =  210 * c.
-           \item Somma lineare di tutti i parametri elevati per una costante d:\\
-                 $SP = (valoreInteresse ^ d) + (valoreStorico ^ d) + (valoreCosto ^ d).$\\
-                 Soluzione migliore: la soluzione che ha il punteggio:\\
-                 $SMP = [(15 ^ d) + (10 ^ d) + (5 ^ d)] * 7$
-           \item Il quadrato della somma lineare di tutti i parametri:\\
-                 $SP = (valoreInteresse + valoreStorico + valoreCosto)^ 2.$\\
-                 Soluzione migliore: la soluzione che ha il punteggio:\\
-                 $SMP = [(15 + 10 + 5) ^ 2] * 7 = 900 * 7 = 6300$
-         \end{itemize}
-       \end{enumerate}
-       Li analizzeremo successivamente scegliendo la funzione che darà risultati migliori.
+   
+    \newpage
+      Calcola punteggio gene -- pseudocodice:
        \begin{figure}[h!]
         \centering
-        \caption{getPunteggio(gene) -- pseudocodice:}
-        \includegraphics[scale=0.5]{getPunteggio pseudocodice.jpg}
-        \label{getPunteggioPseudocodice}
+        \caption{Calcola punteggio gene -- pseudocodice:}
+        \includegraphics[scale=0.5]{calcolaPunteggioGene.png}
+        \label{calcolaPunteggioGenePseudocodice}
       \end{figure}
       
       \newpage
@@ -295,8 +251,8 @@
     \label{MiFermo?--CriteriDiArrestoSubsection}
     Criteri di arresto utilizzati:
     \begin{enumerate}
-      \item Test Ottimalità: se raggiungiamo l’ottimo allora ci fermiamo.
-      \item Tempo di Esecuzione: dopo 5 secondi l’algoritmo termina.
+      \item Test Ottimalità: se raggiungiamo l’ottimo allora l'algoritmo termina.
+      \item Tempo di Esecuzione: dopo 4 secondi l’algoritmo termina.
     \end{enumerate}
     
     % Sezione 2.9
@@ -321,7 +277,7 @@
     Rank Selection:\\\\
     $ fitness(codifica) = \frac {(\mid P \mid - rank(codifica) + 1)} {\sum{rank(codifica)}}$\\
     E’ applicabile anche con valutazioni negative.\\
-    Costa più della Roulette Wheel.\\
+    Costa più della Roulette Wheel Selection.\\
     
     K-way Tournament Selection:\\
     Fissato un valore $1 < K < \mid P \mid$ arbitrario, si selezionano casualmente K individui per formare un 
@@ -373,8 +329,8 @@
     
     Uniform Crossover:\\
     Non si compie alcun taglio, ma il gene i-esimo di entrambi i figli sarà pari al gene i-esimo di uno 
-    dei due genitori. Dato che la scelta tra i due genitori è uniforme, si avranno figli 
-    con circa 50\% del materiale del primo genitore e 50\% del secondo genitore.\\
+    dei due genitori. Dato che la scelta tra i due genitori è uniforme, si avranno 2 figli 
+    con circa il 50\% del materiale del primo genitore e il 50\% del secondo genitore.\\
     Esempio:
     \begin{figure}[h!]
       \centering
@@ -384,22 +340,22 @@
     \end{figure}
     
     Quale tipo di Crossover utilizzeremo?\\
-    Il Single-point Crossover con codifiche piccole non è l’ideale.\\
-    Il Two-point Crossover crea più diversità ma abbiamo sempre una codifica piccola.\\
-    Il K-point Crossover: Quale deve essere il valore ideale di K?\\
-    Per levarci questo problema, scegliamo l’Uniform Crossover. In modo che non facciamo nessun taglio 
+    - Single-point Crossover con codifiche piccole non è l’ideale.\\
+    - Two-point Crossover crea più diversità ma abbiamo sempre una codifica piccola.\\
+    - K-point Crossover: Quale deve essere il valore ideale di K?\\
+    Scegliamo l’Uniform Crossover. In modo che non facciamo nessun taglio 
     e c’è più diversità.\\
     
     % Sezione 2.11
     \subsection{Mutazione}
     \label{Mutazione}
-    Random resetting:\\
+    Random Resetting:\\
     modifica casuale di un gene in un nuovo intero.\\
     Esempio:\\
     N = 30\\
     \begin{enumerate}
       \item Scegliamo un gene casuale da mutare: il gene in posizione 2: 14;
-      \item Scegliamo uno intero casuale 0 $\leq$ x $\leq$ $\mid$vettore spazio stati$\mid$ - 1 diverso dal gene 2 = 14: x = 5;
+      \item Scegliamo uno intero casuale 0 $\leq$ x $\leq$ $\mid$vettore spazio stati$\mid$ - 1: x = 5;
       \item Mutiamo il gene 2: 14$ \rightarrow$ 5.
     \end{enumerate}
     \begin{figure}[h!]
@@ -460,34 +416,54 @@
       \label{Inversion}
     \end{figure}
     
+    Random Mutation:\\
+    modifica casuale di piu' geni in nuovi interi.\\
+    Esempio:\\
+    N = 30\\
+    \begin{enumerate}
+      \item Scegliamo casualmente i geni in posizione 0, 4, 6, 8 $ \rightarrow$ valori: 5, 0, 12, 25;
+      \item Scegliamo casualmente dei nuovi valori x del valore: \\ 0 $\leq$ x $\leq$ $\mid$vettore spazio stati$\mid$ - 1 che rappresentano gli indici presenti 
+      nel vettore spazio stati. Scegliamo casualmente i valori 10, 20, 5, 15.
+      \item Mutiamo i geni: 0: 5 $ \rightarrow$ 10;     4: 0 $ \rightarrow$ 20;     6: 12 $ \rightarrow$ 5;     8: 25 $ \rightarrow$ 15.
+    \end{enumerate}
+    \begin{figure}[h!]
+      \centering
+      \caption{Random Mutation}
+      \includegraphics[scale=0.5]{Random Mutation.png}
+      \label{Random Resetting}
+    \end{figure}
+    
     Quale tipo di mutazione utilizzeremo?\\
     Ricordiamo che ogni gene rappresenta la posizione di uno stato nel vettore spazio stati e, uno stato contiene come parametro 
     un percorso formativo, quindi, non avrebbe senso utilizzare i seguenti tipi di mutazione:\\
     - Swap, Scramble e Inversion\\
     poiche' gli individui mutati saranno gli stessi individui di prima solo che avranno gli stessi geni scambiati di posto.\\
-    Quindi, prendiamo in considerazione la seguente mutazione:\\
-    - Random resetting\\
-    poiche' un gene sara' mutato in un altro gene diverso.\\
-    In particolare, muteremo massimo 4 geni in modo tale da ottenere una maggiore diversità tra i vari individui della popolazione.
+    Quindi, prendiamo in considerazione la seguenti mutazioni:\\
+    - Random resetting;\\
+    - Random mutation.\\
+    Poiché con il random resetting mutiamo un unico gene, e poiché abbiamo una codifica piccola, potrebbe capitare che l'algoritmo genetico evolve poco.
+    Per questo motivo ho deciso di utilizzare la seguente mutazione:\\
+     - Random mutation.\\
     
     % Sezione 2.12
     \subsection{Elitismo}
     \label{elitismoSubsection}
     Poiché gli individui d'elite non dovrebbero superare il 10\% della popolazione totale allora l'elitismo lo utilizzeremo solo se il numero della 
     popolazione totale è maggiore o uguale a 10, questo perché, il 10\% di 10 è uguale ad 1.
-    Gli individui di elite non subiranno ne la selezione, ne il crossover e ne la mutazione e saranno sempre massimo 2 individui.
+    Gli individui di elite non subiranno ne la selezione, ne il crossover e ne la mutazione e saranno sempre massimo 2 individui 
+    (ovvero, l'individuo migliore della generazione attuale e la sua copia).
     
     % Sezione 2.13
     \subsection{Preserviamo l'ammissibilita'}
     \label{PreserviamoAmmissibilitaSubsection}
-    Con il crossover e la mutazione si potrebbe correre il rischio che nelle nuove generazioni potrebbero esistere degli individui non ammissibili. 
-    Nel nostro caso questo non puo' accadere perche':
+    Con il crossover e la mutazione ci potrebbe essere il rischio che nelle nuove generazioni potrebbero esistere degli individui non ammissibili. 
+    Nel nostro caso questo non accade perche':
     \begin{enumerate}
-      \item Nel crossover abbiamo 2 genitori che formano 2 figli contenenti i geni al 50\% del genitore 1 e al 50\% del genitore 2. 
+      \item Nel crossover: abbiamo 2 genitori che formano 2 figli contenenti i geni al 50\% del genitore 1 e al 50\% del genitore 2. 
       Poiche' ogni gene non è altro che un intero che indica la posizione di uno stato nel vettore spazio stati e uno stato ha come attributo un 
       percorso formativo esistente allora non avremo mai dei percorsi formativi inesistenti;
-      \item Nella mutazione: muteremo massimo 4 geni con 4 interi diversi (1 ciascuno), questi nuovi 4 interi saranno ancora degli interi validi 
-      poiché rappresentano le posizioni di 4 stati nel vettore spazio stati e quindi, di conseguenza, abbiamo ancora 4 percorsi formativi validi.
+      \item Nella mutazione: i nuovi valori dei geni mutati saranno sempre degli indici validi poiche' rappresenteranno sempre delle posizioni degli stati nel 
+      vettore spazio stati e quindi, di conseguenza, abbiamo sempre dei percorsi formativi validi.
     \end{enumerate}
     
     % Sezione 2.14
@@ -501,18 +477,14 @@
     \end{itemize}
     Quindi, aggiorniamo la vecchia popolazione con la nuova popolazione salvandoci pero' l'individuo 
     migliore della vecchia generazione se e solo se quest'ultimo e' migliore dell'ultimo individuo 
-    migliore.\\
-    N.B.: l'individuo migliore non farà parte della nuova generazione.
+    migliore salvato (utile nel caso in cui non eseguiamo l'elitismo).\\
+    N.B.: l'individuo migliore salvato non farà parte della nuova generazione.
     
     % Sezione 2.15
     \subsection{Ottengo il miglior individuo}
     \label{ottengoMigliorIndividuoSubsection}
-    Quando usciamo dal loop ritorniamo il miglior individuo, ovvero, uno dei seguenti individui:
-    \begin{itemize}
-      \item se 0  $<$ $\mid$popolazione$\mid$ $\leq$ 10 allora ritorno l'individuo migliore salvato.
-      \item se  $\mid$popolazione$\mid$ $>$ 10 allora ritorno l'individuo migliore dell'ultima generazione 
-      (e' anche l'individuo migliore di tutte le generazioni grazie all'elitismo)
-    \end{itemize}
+    Quando usciamo dal loop ritorniamo il miglior individuo dell'ultima generazione.\\
+    nel caso in cui 0  $<$ M $<$ 10 allora confrontiamo l'individuo migliore ottenuto con l'individuo migliore salvato (non abbiamo individui d'elite).
     
     % Sezione 2.16
     \subsection{Riformulazione dei passi dell'algoritmo genetico}
@@ -522,9 +494,21 @@
     \begin{figure}[h!]
       \centering
       \caption{Riformulazione dei passi dell'algoritmo genetico}
-      \includegraphics[scale=0.5]{Riformulazione passi algoritmo genetico.jpg}
+      \includegraphics[scale=0.5]{Riformulazione passi algoritmo genetico.png}
       \label{Riformulazione passi algoritmo genetico}
     \end{figure}
+    
+   % Sezione 3
+   \subsection{Partecipanti}
+   Partecipante: Gianluca Scisciolo.\\
+   Matricola: 0512107432.\\
+   Email: g.scisciolo@studenti.unisa.it
+   % Sezione 4
+   \subsection{Collegamenti github}
+   Collegamenti repository github:\\
+   Repository modulo FIA: \url{https://github.com/GianlucaScisciolo/formAct_FIA}\\
+   Repositori progetto intero (contiene anche modulo FIA): \url{https://github.com/fabio3649/formAct}\\
+   
      
 \end{document}
 

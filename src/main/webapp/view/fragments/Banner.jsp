@@ -29,7 +29,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="materie"><img src="/formAct/view/immagini/informatica.png"></div>
+                  <div class="materie"><img src="/formAct_FIA/view/immagini/informatica.png"></div>
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="materie"><img src="/formAct/view/immagini/matematica.png"></div>
+                  <div class="materie"><img src="/formAct_FIA/view/immagini/matematica.png"></div>
                 </div>
               </div>
             </div>

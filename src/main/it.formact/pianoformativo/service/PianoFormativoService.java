@@ -50,7 +50,7 @@ import controller.control.Action;
 import controller.control.Service;
 import model.dao.FormatoreDao;
 import model.dao.IscrizioneDao;
-import model.dao.PianoFormativoDao;
+import modelfia.dao.PianoFormativoDao;
 import model.dao.PreferenzaStudenteDao;
 import model.entity.FormatoreEntity;
 import model.entity.IscrizioneEntity;
@@ -60,9 +60,9 @@ import pianoformativo.geneticalgorithm.*;
 
 
 public class PianoFormativoService implements Service {
-	Action ottieniPianoPage = new Action("/formAct/view/pianoformativo/OttieniPianoFormativo.jsp", true, true);
-	Action pianoPage = new Action("/formAct/view/pianoformativo/PianoFormativo.jsp", true, true);
-	Action errorPage = new Action("/formAct/view/messagePages/Errori.jsp", true, true);
+	Action ottieniPianoPage = new Action("/formAct_FIA/view/pianoformativo/OttieniPianoFormativo.jsp", true, true);
+	Action pianoPage = new Action("/formAct_FIA/view/pianoformativo/PianoFormativo.jsp", true, true);
+	Action errorPage = new Action("/formAct_FIA/view/messagePages/Errori.jsp", true, true);
 
 	public PianoFormativoService() {
 

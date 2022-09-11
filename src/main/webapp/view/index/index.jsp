@@ -22,21 +22,21 @@
     <title>Home page</title>
     
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="/formAct/view/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/bootstrap.min.css">
     <!-- style css -->
-    <link rel="stylesheet" href="/formAct/view/css/unicoStile.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/unicoStile.css">
     <!-- Responsive-->
-    <link rel="stylesheet" href="/formAct/view/css/responsive.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/responsive.css">
     
     <!-- favicon -->
-    <link rel="icon" href="/formAct/view/immagini/favicon.png" type="image/gif" /> 
+    <link rel="icon" href="/formAct_FIA/view/immagini/favicon.png" type="image/gif" /> 
     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="/formAct/view/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- owl stylesheets -->
-    <link rel="stylesheet" href="/formAct/view/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/formAct/view/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
    
   </head>
@@ -57,7 +57,7 @@
               <div class="image_main">
                 <div class="main">
                   <p align="center"><font size="4" ><span style="color:orange;"><strong>Tecnologie informatiche più richieste</strong></span></font></p>
-                  <img src="/formAct/view/immagini/tecnologie.png" alt="tecnologie" class="image" style="width:90%">
+                  <img src="/formAct_FIA/view/immagini/tecnologie.png" alt="tecnologie" class="image" style="width:90%">
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@
               <div class="image_main_1">
                 <div class="main">
                   <p align="center"><font size="4" ><span style="color:orange;"><strong>Lavori informatici più richiesti</strong></span></font></p>
-                  <img src="/formAct/view/immagini/aziende.jpg" alt="aziende" class="image" style="width:79%">
+                  <img src="/formAct_FIA/view/immagini/aziende.jpg" alt="aziende" class="image" style="width:79%">
                 </div>
               </div>
             </div>
@@ -83,20 +83,20 @@
             <div class="col-lg-4 col-sm-6">
               <div class="box_main" style="min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%;">
                 <div class="icon_1">
-                  <a href="/formAct/view/percorsoformativo/RicercaPercorsoFormativo.jsp"><img src="/formAct/view/immagini/libro.png"></a>
+                  <a href="/formAct_FIA/view/percorsoformativo/RicercaPercorsoFormativo.jsp"><img src="/formAct_FIA/view/immagini/libro.png"></a>
                 </div>
                 <h4 class="daily_text">Ricerca percorso formativo</h4>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6">
               <div class="box_main" style="min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%;">
-                <div class="icon_1"><a href="${pageContext.request.contextPath}/PercorsoFormativoServlet/RicercaPFService"><img src="/formAct/view/immagini/libri.png"></a></div>
+                <div class="icon_1"><a href="${pageContext.request.contextPath}/PercorsoFormativoServlet/RicercaPFService"><img src="/formAct_FIA/view/immagini/libri.png"></a></div>
                 <h4 class="daily_text_1">Visualizza percorsi formativi</h4>                                                                                                
               </div>
             </div>
             <div class="col-lg-4 col-sm-6">
               <div class="box_main" style="min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%;">
-                <div class="icon_1"><a href="${pageContext.request.contextPath}/PianoFormativoServlet/PianoService"><img src="/formAct/view/immagini/formatori.png"></a></div>
+                <div class="icon_1"><a href="${pageContext.request.contextPath}/PianoFormativoServlet/PianoService"><img src="/formAct_FIA/view/immagini/formatori.png"></a></div>
                 <h4 class="daily_text_1">Piano formativo personalizzato</h4>
               </div>
             </div>
@@ -116,16 +116,16 @@
     
     
     
-    <script src="/formAct/view/js/jquery.min.js"></script>
-    <script src="/formAct/view/js/popper.min.js"></script>
-    <script src="/formAct/view/js/bootstrap.bundle.min.js"></script>
-    <script src="/formAct/view/js/jquery-3.0.0.min.js"></script>
-    <script src="/formAct/view/js/plugin.js"></script>
+    <script src="/formAct_FIA/view/js/jquery.min.js"></script>
+    <script src="/formAct_FIA/view/js/popper.min.js"></script>
+    <script src="/formAct_FIA/view/js/bootstrap.bundle.min.js"></script>
+    <script src="/formAct_FIA/view/js/jquery-3.0.0.min.js"></script>
+    <script src="/formAct_FIA/view/js/plugin.js"></script>
     <!-- sidebar -->
-    <script src="/formAct/view/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/formAct/view/js/custom.js"></script>
+    <script src="/formAct_FIA/view/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/formAct_FIA/view/js/custom.js"></script>
     <!-- javascript -->
-    <script src="/formAct/view/js/owl.carousel.js"></script>
+    <script src="/formAct_FIA/view/js/owl.carousel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
   </body>
 </html>

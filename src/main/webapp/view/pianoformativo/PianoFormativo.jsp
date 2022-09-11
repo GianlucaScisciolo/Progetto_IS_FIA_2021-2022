@@ -25,13 +25,13 @@
     <title>Titolo</title>
     
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="/formAct/view/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/bootstrap.min.css">
     <!-- style css -->
-    <link rel="stylesheet" href="/formAct/view/css/unicoStile.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/unicoStile.css">
     <!-- Responsive-->
-    <link rel="stylesheet" href="/formAct/view/css/responsive.css">
+    <link rel="stylesheet" href="/formAct_FIA/view/css/responsive.css">
     <!-- favicon -->
-    <link rel="icon" href="/formAct/view/immagini/favicon.png" type="image/gif" />
+    <link rel="icon" href="/formAct_FIA/view/immagini/favicon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
   </head>

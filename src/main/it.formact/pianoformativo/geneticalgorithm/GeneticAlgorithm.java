@@ -128,11 +128,11 @@ public class GeneticAlgorithm<S extends Solution<?>> extends GenerationalGenetic
 		}
 		infoPopulation += "\n\n";
 		
-		String posizione = "../git/formAct/formAct/src/main/webapp/view/pianoformativo/generazioni.txt";
+		String posizione = "../git/formAct_FIA/src/main/webapp/view/pianoformativo/generazioni.txt";
 		
 		String error = "Informazione generazione numero " + this.getNumberGeneration() + "non salvata";
 		this.saveFile(posizione, infoPopulation, error);
-		posizione = "../git/formAct/formAct/src/main/webapp/view/pianoformativo/punteggioGenerazioni.txt";
+		posizione = "../git/formAct_FIA/src/main/webapp/view/pianoformativo/punteggioGenerazioni.txt";
 		
 		this.saveFile(posizione, objectivesPopulation, error);
 	}

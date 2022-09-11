@@ -17,11 +17,22 @@
   % Contenuti
   \tableofcontents
   
-  % Sezione 1
+   
+   \subsection{Partecipanti}
+   
+   Partecipante: Gianluca Scisciolo.\\
+   Matricola: 0512107432.\\
+   Email: g.scisciolo@studenti.unisa.it
+  
+   \subsection{Collegamenti github}
+   Collegamenti repository github:\\
+   Repository modulo FIA:\\ \url{https://github.com/GianlucaScisciolo/formAct_FIA}\\
+   Repositori progetto intero (contiene anche modulo FIA):\\ \url{https://github.com/fabio3649/formAct}\\
+  
   \section{Definizione del progetto}
     \label{definizioneDelProgettoSection}
     
-    % Sezione 1.1
+   
     \subsection{L'idea del progetto di IS}
       \label{ideaDelProgettoDiISSubsection}
       L'idea del progetto di IS e' quello di permettere ad uno studente di trovare dei 
@@ -31,7 +42,7 @@
       formativo e' insegnato da un solo formatore quindi, avremo dei percorsi formativi 
       individuali.%
         
-    % Sezione 1.2
+   
     \subsection{L'idea del modulo intelligente di FIA}
       \label{ideaDelModuloIntelligenteDiFIASubsection}
       l'idea del modulo intelligente di FIA e' il seguente:\\
@@ -44,7 +55,7 @@
       \end{enumerate}%
       Inoltre, verranno visualizzati anche un insieme di massimo 6 percorsi formativi suggeriti.
         
-    % Sezione 1.3
+   
     \subsection{Analisi del problema}
       \label{analisiDelProblemaSubsection}
       Analisi del problema:\\
@@ -77,7 +88,7 @@
         \end{itemize}
       \end{itemize}%
         
-    % Sezione 1.4
+   
     \subsection{Analisi dell'algoritmo}
       \label{analisiDellAlgoritmoSubsection}
       Utilizziamo un algoritmo di ricerca.\\
@@ -108,11 +119,10 @@
       Ovviamente, l'utente non vorra' aspettare molto tempo quindi, all'algoritmo gli daremo del tempo 
       non superiore a 4 secondi + il tempo necessario per l'ordinamento e la visualizzazione del piano formativo. Totale: circa 5 secondi.
         
-  % Sezione 2
-  \section{Progettazione dell'algoritmo genetico}
+    \section{Progettazione dell'algoritmo genetico}
     \label{progettazioneDellAlgoritmoGeneticoSection}
     
-    % Sezione 2.1
+  
     \subsection{Spazio degli stati}
       \label{spazioDegliStatiSubsection}
       Lo spazio degli stati lo ricaviamo da una interrogazione al database: consideriamo solamente gli stati che hanno i percorsi formativi 
@@ -127,7 +137,7 @@
       
       \newpage
       
-    % Sezione 2.2
+  
     \subsection{Codifica degli individui}
       \label{codificaDegliIndividuiSubsection}
       Come codifica utilizzeremo un vettore di massimo 10 interi e, ogni intero della codifica rappresenta un gene dell'individuo.\\
@@ -164,7 +174,7 @@
       N.B: Ogni stato contiene solamente un percorso formativo, quindi, alla fine della computazione dell'algoritmo, estrarro' 
       i vari percorsi formativi presenti negli stati della soluzione migliore trovata.
      
-     % Sezione 2.3
+  
      \subsection{Classe PercorsoFormativoEntity}
        \label{classePercorsoFormativoEntitySubsection}
        Ora, vediamo più nel dettaglio come è fatta la classe PercorsoFormativoEntity:\\
@@ -175,7 +185,7 @@
          \label{classePercorsoFormativoEntity}
        \end{figure}\\
       
-    % Sezione 2.4
+  
      \subsection{Classe Stato}
        \label{classeStatoSubsection}
        Ora, vediamo più nel dettaglio come è fatta la classe Stato:\\
@@ -188,7 +198,7 @@
       
       \newpage
       
-    % Sezione 2.5
+  
     \subsection{Passi dell'algoritmo genetico}
       \label{passiDellAlgoritmoGeneticoSubsection}
       Questi saranno i passi dell'algoritmo genetico:
@@ -199,7 +209,7 @@
         \label{passiAlgoritmoGenetico}
       \end{figure}\\
             
-    % Sezione 2.6
+  
     \subsection{Inizializzo la popolazione}
       \label{inizializzoLaPopolazioneSubsection}
       Sia N = $\lvert$vettore spazio stati$\rvert$, la nostra popolazione sara' composta da un numero M di individui tale che:\\ 
@@ -217,7 +227,7 @@
       
       \newpage
       
-    % Sezione 2.7
+  
     \subsection{Valuto la popolazione}
       \label{valutoLaPopolazioneSubsection}
       
@@ -246,7 +256,7 @@
       
       \newpage
       
-    % Sezione 2.8
+  
     \subsection{Mi fermo? -- Criteri di arresto}
     \label{MiFermo?--CriteriDiArrestoSubsection}
     Criteri di arresto utilizzati:
@@ -255,7 +265,7 @@
       \item Tempo di Esecuzione: dopo 4 secondi l’algoritmo termina.
     \end{enumerate}
     
-    % Sezione 2.9
+  
     \subsection{Selezione}
     \label{Selezione}
     Esistono vari tipi di selezione. Andiamo ad analizzarli:
@@ -290,7 +300,7 @@
     Rank selection: troppo lenta.\\
     Scegliamo la k-way Tournament Selection.\\
     
-    % Sezione 2.10
+  
     \subsection{Crossover}
     \label{Crossover}
     Single-point Crossover:\\
@@ -346,7 +356,7 @@
     Scegliamo l’Uniform Crossover. In modo che non facciamo nessun taglio 
     e c’è più diversità.\\
     
-    % Sezione 2.11
+  
     \subsection{Mutazione}
     \label{Mutazione}
     Random Resetting:\\
@@ -445,15 +455,14 @@
     Per questo motivo ho deciso di utilizzare la seguente mutazione:\\
      - Random mutation.\\
     
-    % Sezione 2.12
-    \subsection{Elitismo}
+     \subsection{Elitismo}
     \label{elitismoSubsection}
     Poiché gli individui d'elite non dovrebbero superare il 10\% della popolazione totale allora l'elitismo lo utilizzeremo solo se il numero della 
     popolazione totale è maggiore o uguale a 10, questo perché, il 10\% di 10 è uguale ad 1.
     Gli individui di elite non subiranno ne la selezione, ne il crossover e ne la mutazione e saranno sempre massimo 2 individui 
     (ovvero, l'individuo migliore della generazione attuale e la sua copia).
     
-    % Sezione 2.13
+  
     \subsection{Preserviamo l'ammissibilita'}
     \label{PreserviamoAmmissibilitaSubsection}
     Con il crossover e la mutazione ci potrebbe essere il rischio che nelle nuove generazioni potrebbero esistere degli individui non ammissibili. 
@@ -466,7 +475,7 @@
       vettore spazio stati e quindi, di conseguenza, abbiamo sempre dei percorsi formativi validi.
     \end{enumerate}
     
-    % Sezione 2.14
+  
     \subsection{Aggiorniamo la popolazione}
     \label{aggiorniamoPopolazioneSubsection}
     La nuova popolazione sara' costituita da M individui, ovvero:
@@ -480,13 +489,13 @@
     migliore salvato (utile nel caso in cui non eseguiamo l'elitismo).\\
     N.B.: l'individuo migliore salvato non farà parte della nuova generazione.
     
-    % Sezione 2.15
+  
     \subsection{Ottengo il miglior individuo}
     \label{ottengoMigliorIndividuoSubsection}
     Quando usciamo dal loop ritorniamo il miglior individuo dell'ultima generazione.\\
     nel caso in cui 0  $<$ M $<$ 10 allora confrontiamo l'individuo migliore ottenuto con l'individuo migliore salvato (non abbiamo individui d'elite).
     
-    % Sezione 2.16
+  
     \subsection{Riformulazione dei passi dell'algoritmo genetico}
     \label{riformulazioneDeiPassiAlgoritmoGeneticoSubsection}
     Alla luce della progettazione fatta, possiamo riformulare il tutto con i seguenti passi 
@@ -497,17 +506,7 @@
       \includegraphics[scale=0.5]{Riformulazione passi algoritmo genetico.png}
       \label{Riformulazione passi algoritmo genetico}
     \end{figure}
-    
-   % Sezione 3
-   \subsection{Partecipanti}
-   Partecipante: Gianluca Scisciolo.\\
-   Matricola: 0512107432.\\
-   Email: g.scisciolo@studenti.unisa.it
-   % Sezione 4
-   \subsection{Collegamenti github}
-   Collegamenti repository github:\\
-   Repository modulo FIA: \url{https://github.com/GianlucaScisciolo/formAct_FIA}\\
-   Repositori progetto intero (contiene anche modulo FIA): \url{https://github.com/fabio3649/formAct}\\
+    .
    
      
 \end{document}

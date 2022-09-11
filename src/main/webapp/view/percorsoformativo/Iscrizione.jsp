@@ -105,7 +105,8 @@
           Integer k = 0;
           for(DisponibilitaEntity d : disps) {
 %>          
-            <input type="checkbox" class="giorni" id="giorno<%=+k%>" name="giorno<%=+k%>" value="<%=d.getIdDisp()%>"> <%=d.getGiornoSettimana() %> <%=d.getOrario() %>
+            <input type="checkbox" class="giorni" id="giorno<%=k%>" name="giorno<%=k%>" value="<%=d.getIdDisp()%>" <%=d.getGiornoSettimana() %> <%=d.getOrario()%> onclick="isSelected('#giorno<%=k%>IsSelected')"> <%=d.getGiornoSettimana() %> <%=d.getOrario() %>
+            <input type="hidden" id="giorno<%=k%>IsSelected" name="giorno<%=k%>IsSelected" value="false">
             <br>
 <% 
 		    k++;

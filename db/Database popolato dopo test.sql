@@ -43,38 +43,6 @@ INSERT INTO `categoria` VALUES (1,'programmazione web','HTML , CSS, JAVASCRIPT',
 UNLOCK TABLES;
 
 --
--- Table structure for table `certificazione`
---
-
-DROP TABLE IF EXISTS `certificazione`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `certificazione` (
-  `idcertificazione` int NOT NULL,
-  `formatore` int NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `tipologia` varchar(300) NOT NULL,
-  `istituto` varchar(100) NOT NULL,
-  `descrizione` varchar(300) DEFAULT NULL,
-  `annoInizio` date NOT NULL,
-  `annoFine` date NOT NULL,
-  PRIMARY KEY (`idcertificazione`),
-  UNIQUE KEY `idcertificazione_UNIQUE` (`idcertificazione`),
-  KEY `formatore_idx` (`formatore`),
-  CONSTRAINT `formatore` FOREIGN KEY (`formatore`) REFERENCES `formatore` (`idformatore`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `certificazione`
---
-
-LOCK TABLES `certificazione` WRITE;
-/*!40000 ALTER TABLE `certificazione` DISABLE KEYS */;
-/*!40000 ALTER TABLE `certificazione` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `disponibilita`
 --
 
